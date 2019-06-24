@@ -1,0 +1,62 @@
+[
+
+
+  {
+
+    "Username": "facundomierez@gmail.com",
+    "NormalizedUserName": "FACUNDOMIEREZ@GMAIL.COM",
+    "Email": "facundomierez@gmail.com",
+    "NormalizedEmail": "FACUNDOMIEREZ@GMAIL.COM",
+    "FirstName": "Facundo",
+    "LastName": "Mierez",
+    "Created": "2019-06-22 21:49:07.093",
+    "LastActive": "2019-06-22 21:49:07.093",
+    "ConcurrencyStamp": "a07301d1-bc56-4e99-a2b3-b59e438bb129",
+    "SecurityStamp": "6YYH5RHYUXZC7RVJ4CHFGYRST465ZVFY",
+    "PasswordHash": "AQAAAAEAACcQAAAAECqWq4BVHlxZP8v3+lJHuZEt4rHoP8zQ6peVBNjjQvUDuPHUiC8GkrpuVNEw5O8Q7w=="
+  },
+  {
+
+    "Username": "claudio@gmail.com",
+    "NormalizedUserName": "CLAUDIO@GMAIL.COM",
+    "Email": "claudio@gmail.com",
+    "NormalizedEmail": "CLAUDIO@GMAIL.COM",
+    "FirstName": "Claudio",
+    "LastName": "Lezana",
+    "Created": "2019-06-22 21:49:07.093",
+    "LastActive": "2019-06-22 21:49:07.093",
+    "ConcurrencyStamp": "a07301d1-bc56-4e99-a2b3-b59e438bb129",
+    "SecurityStamp": "6YYH5RHYUXZC7RVJ4CHFGYRST465ZVFY",
+    "PasswordHash": "AQAAAAEAACcQAAAAECqWq4BVHlxZP8v3+lJHuZEt4rHoP8zQ6peVBNjjQvUDuPHUiC8GkrpuVNEw5O8Q7w=="
+  },
+  {
+
+    "Username": "leandro@gmail.com",
+    "NormalizedUserName": "LEANDRO@GMAIL.COM",
+    "Email": "leandro@gmail.com",
+    "NormalizedEmail": "LEANDRO@GMAIL.COM",
+    "FirstName": "Leandro",
+    "LastName": "Paredes",
+    "Created": "2019-06-22 21:49:07.093",
+    "LastActive": "2019-06-22 21:49:07.093",
+
+    "ConcurrencyStamp": "a07301d1-bc56-4e99-a2b3-b59e438bb129",
+    "SecurityStamp": "6YYH5RHYUXZC7RVJ4CHFGYRST465ZVFY",
+    "PasswordHash": "AQAAAAEAACcQAAAAECqWq4BVHlxZP8v3+lJHuZEt4rHoP8zQ6peVBNjjQvUDuPHUiC8GkrpuVNEw5O8Q7w=="
+  },
+  {
+
+    "Username": "julian@gmail.com",
+    "NormalizedUserName": "JULIAN@GMAIL.COM",
+    "Email": "julian@gmail.com",
+    "NormalizedEmail": "JULIAN@GMAIL.COM",
+    "FirstName": "Julian",
+    "LastName": "Gimenez",
+    "Created": "2019-06-22 21:49:07.093",
+    "LastActive": "2019-06-22 21:49:07.093",
+
+    "ConcurrencyStamp": "a07301d1-bc56-4e99-a2b3-b59e438bb129",
+    "SecurityStamp": "6YYH5RHYUXZC7RVJ4CHFGYRST465ZVFY",
+    "PasswordHash": "AQAAAAEAACcQAAAAECqWq4BVHlxZP8v3+lJHuZEt4rHoP8zQ6peVBNjjQvUDuPHUiC8GkrpuVNEw5O8Q7w=="
+  }
+]

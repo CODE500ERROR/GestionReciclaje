@@ -1,0 +1,70 @@
+<form
+  [formGroup]="createPlantForm"
+  (ngSubmit)="save()"
+  class="text-center border border-light p-5 form"
+>
+  <p class="h4 mb-4">Crear Planta</p>
+
+  <mat-form-field class="full-width-input">
+    <input matInput 
+           placeholder="Nombre"            
+           [value]="createPlantForm.get('name').value | titlecase"
+           formControlName="name" />
+    
+           <mat-error *ngIf="createPlantForm.get('name').errors">
+      Nombre es requerido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Dirección" 
+           [value]="createPlantForm.get('address').value | titlecase"
+           formControlName="address" />
+
+    <mat-error *ngIf="createPlantForm.get('address').errors">
+      Dirección es requerido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input matInput 
+           placeholder="Cantidad de operarios"            
+           [value]="createPlantForm.get('operatorsQuantity').value"
+           formControlName="operatorsQuantity" />
+    
+           <mat-error *ngIf="createPlantForm.get('operatorsQuantity').errors">
+      Cantidad de Operario es requerido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Seleccione un municipio</mat-label>
+    <mat-select [value]="createPlantForm.get('municipioId').value"
+                formControlName="municipioId">
+      <mat-option *ngFor="let item of municipios" value="{{item.municipioId}}">{{item.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="createPlantForm.get('municipioId').errors">
+      Municipio es requerido
+    </mat-error>
+  </mat-form-field>
+
+  <div >
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-large-50"
+      type="submit"
+    >
+      Guardar
+    </button>
+    <button
+      mat-raised-button
+      color=""
+      class="btn-large-50"
+      type="button"
+      (click)="cancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>

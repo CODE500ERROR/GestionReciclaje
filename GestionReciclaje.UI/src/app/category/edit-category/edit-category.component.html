@@ -1,0 +1,42 @@
+
+<form [formGroup]="updateCategoryForm" (ngSubmit)="updateCategory()"  class="text-center border border-light p-5 form">
+  <p class="h4 mb-4">Edit Category</p>
+
+  <mat-form-field class="full-width-input">
+      <input matInput placeholder="Name" 
+            formControlName="name"
+            [value]="updateCategoryForm.get('name').value | titlecase" />
+      <mat-error *ngIf="updateCategoryForm.get('name').errors">Nombre es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Seleccione una opción</mat-label>
+    <mat-select [value]="updateCategoryForm.get('parentId').value"
+                formControlName="parentId">
+      <mat-option *ngFor="let item of parents" value="{{item.categoryId}}">{{item.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="updateCategoryForm.get('parentId').errors">
+      Municipio es requerido
+    </mat-error>
+  </mat-form-field>
+  
+    <div >
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-large-50"
+          type="submit"
+        >
+          Guardar
+        </button>
+        <button
+          mat-raised-button            
+          class="btn-large-50"
+          type="button"
+          (click)="cancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+
+</form>

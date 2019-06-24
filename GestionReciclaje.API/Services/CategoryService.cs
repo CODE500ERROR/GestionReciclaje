@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using BaseProject.Models;
+using DatingApp.API.Data;
+using GestionReciclaje.Dtos;
+using GestionReciclaje.Interfaces;
+using GestionReciclaje.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace GestionReciclaje.Services
+{
+    public class CategoryService : ICategoryService
+    {
+        private readonly DataContext _context;
+        private readonly IMapper _mapper;
+
+        public CategoryService(DataContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
+        public async Task<CategoryDto> GetById(Guid categoryId)
+        {
+            var cat = await _context.Categories.FindAsync(categoryId);
+            return new CategoryDto
+            {
+                CategoryId = cat.CategoryId,
+                Name = cat.Name,
+                ParentId = cat.ParentId
+            };
+        }
+
+        public List<CategoryDto> GetAllParent()
+        {
+            var data = _context.Categories
+                                     .OrderByDescending(x => x.CreationTime)
+                                     .Where(x => !x.IsDeleted && !x.ParentId.HasValue)
+                                     .AsQueryable().ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
+            return data.ToList();
+        }
+
+        public List<CategoryDto> GetAll()
+        {
+            var data = _context.Categories.OrderByDescending(x => x.CreationTime)
+                                         .Where(x => !x.IsDeleted)
+                                         .AsQueryable().ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
+            return data.ToList();
+        }
+
+        public async Task<int> Create(CategoryDto categoryDto)
+        {
+            var category = new Category()
+            {
+                Name = categoryDto.Name,
+                ParentId = categoryDto.ParentId
+            };
+            var result = await _context.Categories.AddAsync(category);
+            return await _context.SaveChangesAsync();
+        }
+
+
+        public async Task<int> Update(CategoryDto categoryDto)
+        {
+            var category = await _context.Categories.FindAsync(categoryDto.CategoryId);
+            category.Name = categoryDto.Name;
+            category.ParentId = categoryDto.ParentId;
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> Delete(CategoryDto categoryDto)
+        {
+            var category = await _context.Categories.FindAsync(categoryDto.CategoryId);
+            category.IsDeleted = true;
+            return await _context.SaveChangesAsync();
+        }
+
+    }
+}

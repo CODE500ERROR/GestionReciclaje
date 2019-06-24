@@ -1,0 +1,138 @@
+<form
+  [formGroup]="createUserForm"
+  (ngSubmit)="save()"
+  class="text-center border border-light p-5 form"
+>
+  <p class="h4 mb-4">Create User</p>
+
+  <mat-form-field class="full-width-input">
+    <input matInput 
+           placeholder="Nombre" 
+           
+           [value]="createUserForm.get('firstName').value | titlecase"
+
+           formControlName="firstName" />
+    
+           <mat-error *ngIf="createUserForm.get('firstName').errors">
+      Firstname is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Apellido" 
+           [value]="createUserForm.get('lastName').value | titlecase"
+           formControlName="lastName" />
+
+    <mat-error *ngIf="createUserForm.get('lastName').errors">
+      Lastname is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Teléfono" 
+          formControlName="phoneNumber"
+          [value]="createUserForm.get('phoneNumber').value" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Email" formControlName="email"  />
+    <mat-error *ngIf="f.email.errors && f.email.errors.required">
+      Email es requerido
+    </mat-error>
+
+    <mat-error *ngIf="f.email.errors && f.email.errors.email">
+      Debe ingresar un email válido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input
+      matInput
+      placeholder="Confirmar Email"
+      formControlName="confirmEmail"
+    />
+    <mat-error
+      *ngIf="
+        createUserForm.get('confirmEmail').errors &&
+        f.confirmEmail.errors.mustMatch
+      "
+    >
+      Email y confirmar email deben ser iguales
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input
+      matInput
+      placeholder="Contraseña"
+      formControlName="password"
+      type="password"
+    />
+
+    <mat-error *ngIf="f.password.errors && f.password.errors.required">
+      Password is required
+    </mat-error>
+
+    <mat-error *ngIf="f.password.hasError('minlength')">
+      Contraseña debe tener al menos 4 caracteres
+    </mat-error>
+
+    <mat-error *ngIf="f.password.hasError('maxlength')">
+      Contrasñea no puede exceder 10 caracteres
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input
+      matInput
+      placeholder="Confirmar Contraseña"
+      type="password"
+      formControlName="confirmPassword"
+    />
+    <mat-error
+      *ngIf="f.confirmPassword.errors && f.confirmPassword.errors.mustMatch"
+    >
+    Contraseña y confirmar contraseña deben ser iguales
+  </mat-error>
+  </mat-form-field>
+
+  
+  <mat-form-field>
+    <mat-label>Seleccione una planta</mat-label>
+    <mat-select [value]="createUserForm.get('plantId').value"
+                formControlName="plantId">
+      <mat-option *ngFor="let item of plants" value="{{item.plantId}}">{{item.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="createUserForm.get('plantId').errors">
+      Planta es requerido
+    </mat-error>
+  </mat-form-field>
+
+    <div class="radio-roles text-left">
+      <label>Roles: </label>
+      <mat-checkbox formControlName="roles" [(ngModel)]=role.checked value="role.name" *ngFor="let role of roles">
+          {{role.name}}
+      </mat-checkbox>
+    </div>
+
+
+  <div >
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-large-50"
+      type="submit"
+    >
+      Save
+    </button>
+    <button
+      mat-raised-button
+      color=""
+      class="btn-large-50"
+      type="button"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+  </div>
+</form>

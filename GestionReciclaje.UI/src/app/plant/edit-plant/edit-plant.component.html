@@ -1,0 +1,60 @@
+
+<form [formGroup]="updatePlantForm" (ngSubmit)="updatePlant()"  class="text-center border border-light p-5 form">
+  <p class="h4 mb-4">Edit Plant</p>
+
+  <mat-form-field class="full-width-input">
+      <input matInput placeholder="Name" 
+            formControlName="name"
+            [value]="updatePlantForm.get('name').value | titlecase" />
+      <mat-error *ngIf="updatePlantForm.get('name').errors">Nombre es requerido</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="full-width-input">
+      <input matInput placeholder="Dirección" formControlName="address" 
+            [value]="updatePlantForm.get('address').value | titlecase"/>
+      <mat-error *ngIf="updatePlantForm.get('address').errors">Dirección es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <input matInput 
+           placeholder="Cantidad de operarios"            
+           [value]="updatePlantForm.get('operatorsQuantity').value"
+           formControlName="operatorsQuantity" />
+    
+           <mat-error *ngIf="updatePlantForm.get('operatorsQuantity').errors">
+      Cantidad de Operario es requerido
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Seleccione un municipio</mat-label>
+    <mat-select [value]="updatePlantForm.get('municipioId').value"
+                formControlName="municipioId">
+      <mat-option *ngFor="let item of municipios" value="{{item.municipioId}}">{{item.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="updatePlantForm.get('municipioId').errors">
+      Municipio es requerido
+    </mat-error>
+  </mat-form-field>
+  
+    <div >
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-large-50"
+          type="submit"
+        >
+          Guardar
+        </button>
+        <button
+          mat-raised-button            
+          class="btn-large-50"
+          type="button"
+          (click)="cancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+
+</form>
