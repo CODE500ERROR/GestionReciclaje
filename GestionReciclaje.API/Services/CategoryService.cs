@@ -45,7 +45,7 @@ namespace GestionReciclaje.Services
             return data.ToList();
         }
 
-        public async Task<PagedList<Category>>GetAll(CateogryParamsDto catParams)
+        public async Task<PagedList<Category>>GetAll(CategoryParamsDto catParams)
         {
 
 
@@ -75,9 +75,9 @@ namespace GestionReciclaje.Services
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(CategoryDto categoryDto)
+        public async Task<int> Delete(Guid catId)
         {
-            var category = await _context.Categories.FindAsync(categoryDto.CategoryId);
+            var category = await _context.Categories.FindAsync(catId);
             category.IsDeleted = true;
             return await _context.SaveChangesAsync();
         }

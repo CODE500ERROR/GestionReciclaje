@@ -14,9 +14,9 @@ namespace GestionReciclaje.Interfaces
     {
         Task<CategoryDto> GetById(Guid categoryId);
         List<CategoryDto> GetAllParent();
-        Task<PagedList<Category>> GetAll(CateogryParamsDto catParams);
+        Task<PagedList<Category>> GetAll(CategoryParamsDto catParams);
         Task<int> Create(CategoryDto categoryDto);
-        Task<int> Delete(CategoryDto categoryDto);
+        Task<int> Delete(Guid catId);
         Task<int> Update(CategoryDto categoryDto);
 
     }

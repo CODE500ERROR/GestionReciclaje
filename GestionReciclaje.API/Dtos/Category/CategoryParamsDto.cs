@@ -1,7 +1,7 @@
 
 namespace GestionReciclaje.Dtos
 {
-    public class CateogryParamsDto
+    public class CategoryParamsDto
     {
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;

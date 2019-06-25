@@ -18,25 +18,25 @@ namespace DatingApp.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class CategoryController : ControllerBase
+    public class PlantController : ControllerBase
     {
        
-        private readonly ICategoryService _categoryService;
+        private readonly IPlantService _plantService;
         private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService, IMapper mapper)
+        public PlantController(IPlantService plantService, IMapper mapper)
         {            
-            _categoryService = categoryService;
+            _plantService = plantService;
             _mapper = mapper;
         }
 
         
         //[Authorize(Policy="VipOnly")]
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery]CategoryParamsDto catParams)
+        public async Task<IActionResult> GetAll([FromQuery]PlantParamsDto plantParams)
         {
-            var categories = await  _categoryService.GetAll(catParams);
-            var result= _mapper.Map<IEnumerable<CategoryDto>>(categories);
+            var plants = await  _plantService.GetAll(plantParams);
+            var result= _mapper.Map<IEnumerable<PlantDto>>(plants);
             return Ok(result);            
         }
 
@@ -44,27 +44,21 @@ namespace DatingApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var cat = await _categoryService.GetById(id);
+            var cat = await _plantService.GetById(id);
             if (cat == null)
                 return NotFound();
 
             return Ok(cat);
         }
 
-        [HttpGet("GetAllParent")]
-        public IActionResult GetAllParent()
-        {
-            var parents = _categoryService.GetAllParent();
-            return Ok(parents);
-        }
 
       
         [HttpPost()]       
-        public async Task<ActionResult<int>> Create([FromBody] CategoryDto category)
+        public async Task<ActionResult<int>> Create([FromBody] PlantDto Plant)
         {
             try
             {
-                await _categoryService.Create(category);
+                await _plantService.Create(Plant);
                 return Ok();
             }
             catch (Exception ex)
@@ -75,11 +69,11 @@ namespace DatingApp.Controllers
 
 
         [HttpPut()]
-        public async Task<ActionResult<int>> Update([FromBody] CategoryDto category)
+        public async Task<ActionResult<int>> Update([FromBody] PlantDto Plant)
         {
             try
             {
-                await _categoryService.Update(category);
+                await _plantService.Update(Plant);
                 return Ok();
             }
             catch (Exception ex)
@@ -88,12 +82,12 @@ namespace DatingApp.Controllers
             }
         }
 
-        [HttpDelete()]
-        public async Task<ActionResult<int>> Delete(Guid catId)
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult<int>> Delete(Guid id)
         {
             try
             {
-                await _categoryService.Delete(catId);
+                await _plantService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
