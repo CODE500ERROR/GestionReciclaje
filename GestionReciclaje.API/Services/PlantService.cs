@@ -8,9 +8,9 @@ using BaseProject.Models;
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using GestionReciclaje.Dtos;
+using GestionReciclaje.Dtos.Plant;
 using GestionReciclaje.Interfaces;
-using GestionReciclaje.Models;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace GestionReciclaje.Services
 {

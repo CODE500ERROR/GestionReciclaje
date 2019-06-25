@@ -5,9 +5,7 @@ using BaseProject.Models;
 using DatingApp.API.Data;
 using DatingApp.API.Helpers;
 using GestionReciclaje.Dtos;
-using GestionReciclaje.Models;
-using Microsoft.EntityFrameworkCore;
-
+using GestionReciclaje.Dtos.Plant;
 namespace GestionReciclaje.Interfaces
 {
     public interface IPlantService

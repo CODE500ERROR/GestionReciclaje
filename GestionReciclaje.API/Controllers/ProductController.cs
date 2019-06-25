@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Data;
 using GestionReciclaje.Dtos;
-using GestionReciclaje.Dtos.Plant;
 using GestionReciclaje.Interfaces;
 using GestionReciclaje.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -19,25 +18,25 @@ namespace DatingApp.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class PlantController : ControllerBase
+    public class ProductController : ControllerBase
     {
        
-        private readonly IPlantService _plantService;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public PlantController(IPlantService plantService, IMapper mapper)
+        public ProductController(IProductService ProductService, IMapper mapper)
         {            
-            _plantService = plantService;
+            _productService = ProductService;
             _mapper = mapper;
         }
 
         
         //[Authorize(Policy="VipOnly")]
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PlantParamsDto plantParams)
+        public async Task<IActionResult> GetAll([FromQuery]ProductParamsDto ProductParams)
         {
-            var plants = await  _plantService.GetAll(plantParams);
-            var result= _mapper.Map<IEnumerable<PlantDto>>(plants);
+            var Products = await  _productService.GetAll(ProductParams);
+            var result= _mapper.Map<IEnumerable<ProductDto>>(Products);
             return Ok(result);            
         }
 
@@ -45,7 +44,7 @@ namespace DatingApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var cat = await _plantService.GetById(id);
+            var cat = await _productService.GetById(id);
             if (cat == null)
                 return NotFound();
 
@@ -55,11 +54,11 @@ namespace DatingApp.Controllers
 
       
         [HttpPost()]       
-        public async Task<ActionResult<int>> Create([FromBody] PlantDto Plant)
+        public async Task<ActionResult<int>> Create([FromBody] ProductDto Product)
         {
             try
             {
-                await _plantService.Create(Plant);
+                await _productService.Create(Product);
                 return Ok();
             }
             catch (Exception ex)
@@ -70,11 +69,11 @@ namespace DatingApp.Controllers
 
 
         [HttpPut()]
-        public async Task<ActionResult<int>> Update([FromBody] PlantDto Plant)
+        public async Task<ActionResult<int>> Update([FromBody] ProductDto Product)
         {
             try
             {
-                await _plantService.Update(Plant);
+                await _productService.Update(Product);
                 return Ok();
             }
             catch (Exception ex)
@@ -88,7 +87,7 @@ namespace DatingApp.Controllers
         {
             try
             {
-                await _plantService.Delete(id);
+                await _productService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

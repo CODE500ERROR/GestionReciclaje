@@ -98,6 +98,7 @@ namespace DatingApp
             services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IPlantService, PlantService>();
+            services.AddScoped<IProductService, ProductService>();
 
             services.AddScoped<LogUserActivity>();
         }

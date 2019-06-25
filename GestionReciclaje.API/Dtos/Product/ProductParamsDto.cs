@@ -1,7 +1,7 @@
 
-namespace GestionReciclaje.Dtos.Plant
+namespace GestionReciclaje.Dtos
 {
-    public class PlantParamsDto
+    public class ProductParamsDto
     {
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
