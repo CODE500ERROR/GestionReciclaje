@@ -6,6 +6,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using BaseProject.Models;
 using DatingApp.API.Data;
+using DatingApp.API.Helpers;
 using GestionReciclaje.Dtos;
 using GestionReciclaje.Interfaces;
 using GestionReciclaje.Models;
@@ -44,12 +45,14 @@ namespace GestionReciclaje.Services
             return data.ToList();
         }
 
-        public List<CategoryDto> GetAll()
+        public async Task<PagedList<Category>>GetAll(CateogryParamsDto catParams)
         {
+
+
             var data = _context.Categories.OrderByDescending(x => x.CreationTime)
                                          .Where(x => !x.IsDeleted)
-                                         .AsQueryable().ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
-            return data.ToList();
+                                         .AsQueryable(); //.ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
+            return await PagedList<Category>.CreateAsync(data, catParams.PageNumber, catParams.PageSize); ;
         }
 
         public async Task<int> Create(CategoryDto categoryDto)
