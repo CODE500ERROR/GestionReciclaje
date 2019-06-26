@@ -52,7 +52,7 @@ export class CreateCategoryComponent implements OnInit {
 
  getAllParent(){
    this.categoryService.getAllParent().subscribe(data => {
-   this.parents = data.parents;
+   this.parents = data;
   }, error => {
     this.alertService.error(error);
   }, () => {   

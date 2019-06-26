@@ -34,7 +34,7 @@ namespace GestionReciclaje.Services
                 Name= product.Name,
                 Description= product.Description,
                 CategoryId= product.CategoryId,
-                ParentId=product.Category.ParentId
+                ParentId=product.Category.ParentId                
             };
         }
 
@@ -42,7 +42,8 @@ namespace GestionReciclaje.Services
 
         public async Task<PagedList<Product>> GetAll(ProductParamsDto ProdcutParams)
         {
-            var data = _context.Products.OrderByDescending(x => x.CreationTime)
+            var data = _context.Products .Include(x=>x.Category)
+                                         .OrderByDescending(x => x.CreationTime)
                                          .Where(x => !x.IsDeleted)
                                          .AsQueryable(); //.ProjectTo<Product>(_mapper.ConfigurationProvider);
             return await PagedList<Product>.CreateAsync(data, ProdcutParams.PageNumber, ProdcutParams.PageSize); ;

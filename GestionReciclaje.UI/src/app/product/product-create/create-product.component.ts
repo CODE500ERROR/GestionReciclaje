@@ -58,6 +58,7 @@ export class CreateProductComponent implements OnInit {
 
  getAllParent(){
    this.categoryService.getAllParent().subscribe(data => {
+    
    this.parents = data;
   }, error => {
     this.alertService.error(error);
