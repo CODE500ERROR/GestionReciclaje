@@ -19,7 +19,7 @@ export class PlantService {
   getAll(filters: PlantFilter): Observable<PagedResult<any[]>> {
     let params = new HttpParams();
     const paginatedResult: PagedResult<any[]> = new PagedResult<any[]>();
-    params = params.append('pageNumber', filters.pageNumber != null ? filters.pageNumber .toString() :  null );
+    params = params.append('pageNumber', filters.pageNumber != null ? filters.pageNumber .toString() :  '1' );
 
     params = params.append('pageSize',  filters.pageSize != null ? filters.pageSize .toString() :  null);    
     params = params.append('name', filters.name);

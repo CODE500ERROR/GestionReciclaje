@@ -31,8 +31,7 @@ export class UserService {
           // paginatedResult.filters.pageSize = response.body['pageSize'];
           // paginatedResult.filters.pageNumber = response.body['pageNumber'];
           // paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body;
-          console.log(response);
+          paginatedResult.entity = response.body;         
           return paginatedResult;
       }));
   }

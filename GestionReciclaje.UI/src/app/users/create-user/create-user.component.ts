@@ -82,7 +82,7 @@ export class CreateUserComponent implements OnInit {
 
   getAllRoles() {
     this.rolesService.getAllRoles().subscribe( data => {
-     this.roles = data.roles;
+     this.roles = data;
     }, error => {
       this.alertService.error(error);
     });

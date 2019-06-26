@@ -35,8 +35,8 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery]ProductParamsDto ProductParams)
         {
-            var Products = await  _productService.GetAll(ProductParams);
-            var result= _mapper.Map<IEnumerable<ProductDto>>(Products);
+            var products = await  _productService.GetAll(ProductParams);
+            var result= _mapper.Map<IEnumerable<ProductDto>>(products);
             return Ok(result);            
         }
 
