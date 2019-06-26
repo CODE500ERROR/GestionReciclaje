@@ -6,7 +6,7 @@ export  class FilterBase {
 }
 
 export class PagedResult<T> {
-    entity: T;
+    entity: any;
     filters: FilterBase;
 
     constructor(){

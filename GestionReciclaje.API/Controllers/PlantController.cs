@@ -45,11 +45,11 @@ namespace DatingApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var cat = await _plantService.GetById(id);
-            if (cat == null)
+            var plant = await _plantService.GetById(id);
+            if (plant == null)
                 return NotFound();
 
-            return Ok(cat);
+            return Ok(plant);
         }
 
 

@@ -45,11 +45,21 @@ namespace GestionReciclaje.Services
             return data.ToList();
         }
 
-        public async Task<PagedList<Category>>GetAll(CategoryParamsDto catParams)
+
+
+        public List<CategoryDto> GetCategoryByParent(Guid parentId)
+        {
+            var data =  _context.Categories
+                                            .OrderByDescending(x => x.CreationTime)
+                                            .Where(x => !x.IsDeleted && x.ParentId==parentId);
+             return _mapper.Map<IEnumerable<CategoryDto>>(data).ToList();                                   
+        }
+        public async Task<PagedList<Category>> GetAll(CategoryParamsDto catParams)
         {
 
 
-            var data = _context.Categories.OrderByDescending(x => x.CreationTime)
+            var data = _context.Categories.Include(x=>x.Parent)
+                                          .OrderByDescending(x => x.CreationTime)
                                          .Where(x => !x.IsDeleted)
                                          .AsQueryable(); //.ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
             return await PagedList<Category>.CreateAsync(data, catParams.PageNumber, catParams.PageSize); ;
@@ -81,6 +91,8 @@ namespace GestionReciclaje.Services
             category.IsDeleted = true;
             return await _context.SaveChangesAsync();
         }
+
+
 
     }
 }

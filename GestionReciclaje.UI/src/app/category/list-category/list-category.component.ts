@@ -68,6 +68,7 @@ export class ListCategoryComponent implements OnInit, AfterViewInit {
     this.dialogService.openConfirmDialog('Está seguro que desea eliminar esta categoría ?')
     .afterClosed().subscribe(res => {
       if (res) {
+
         this.categoryService.delete(categorySelected.categoryId).subscribe(() => {
           this.getAll();
           this.alertify.success('Eliminado exitosamente !');

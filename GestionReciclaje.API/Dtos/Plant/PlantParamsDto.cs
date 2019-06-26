@@ -12,6 +12,7 @@ namespace GestionReciclaje.Dtos.Plant
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value;}
         }
 
+        public string Name { get; set; }
         public int UserId { get; set; }               
         public string OrderBy { get; set; }
        

@@ -27,10 +27,11 @@ export class CategoryService {
     return this.http.get(this.baseApiUrl , { observe: 'response', params})
     .pipe(
       map(response => {
-          paginatedResult.filters.pageSize = response.body['pageSize'];
-          paginatedResult.filters.pageNumber = response.body['pageNumber'];
-          paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body['categories'];
+
+          // paginatedResult.filters.pageSize = response.body['pageSize'];
+          // paginatedResult.filters.pageNumber = response.body['pageNumber'];
+          // paginatedResult.filters.totalRecords = response.body['totalRecords'];
+          paginatedResult.entity = response.body;
           return paginatedResult;
       }));
   }
@@ -56,6 +57,6 @@ export class CategoryService {
   }
 
   create(category: Category) {
-    return this.http.post(this.baseApiUrl + 'create', category);
+    return this.http.post(this.baseApiUrl, category);
   }
 }

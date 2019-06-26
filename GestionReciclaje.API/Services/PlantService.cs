@@ -10,7 +10,7 @@ using DatingApp.API.Helpers;
 using GestionReciclaje.Dtos;
 using GestionReciclaje.Dtos.Plant;
 using GestionReciclaje.Interfaces;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace GestionReciclaje.Services
 {
@@ -38,19 +38,14 @@ namespace GestionReciclaje.Services
             };
         }
 
-        public List<PlantDto> GetAllParent()
-        {
-            var data = _context.Categories
-                                     .OrderByDescending(x => x.CreationTime)
-                                     .Where(x => !x.IsDeleted && !x.ParentId.HasValue)
-                                     .AsQueryable().ProjectTo<PlantDto>(_mapper.ConfigurationProvider);
-            return data.ToList();
-        }
+     
 
         public async Task<PagedList<Plant>>GetAll(PlantParamsDto plantParams)
         {
-            var data = _context.Plants.OrderByDescending(x => x.CreationTime)
-                                         .Where(x => !x.IsDeleted)
+            var data = _context.Plants   .Include(x=>x.Municipio)
+                                         .OrderByDescending(x => x.CreationTime)
+                                         .Where(x => !x.IsDeleted &&
+                                                         (string.IsNullOrEmpty(plantParams.Name) || x.Name.Contains(plantParams.Name)))
                                          .AsQueryable(); //.ProjectTo<PlantDto>(_mapper.ConfigurationProvider);
             return await PagedList<Plant>.CreateAsync(data, plantParams.PageNumber, plantParams.PageSize); ;
         }

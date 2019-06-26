@@ -26,11 +26,12 @@ export class PlantService {
 
     return this.http.get(this.baseApiUrl , { observe: 'response', params})
     .pipe(
-      map(response => {
-          paginatedResult.filters.pageSize = response.body['pageSize'];
-          paginatedResult.filters.pageNumber = response.body['pageNumber'];
-          paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body['plants'];
+      map(response => {        
+          // paginatedResult.filters.pageSize = response.body['pageSize'];
+          // paginatedResult.filters.pageNumber = response.body['pageNumber'];
+          // paginatedResult.filters.totalRecords = response.body['totalRecords'];
+          paginatedResult.entity = response.body;   
+          console.log(response);       
           return paginatedResult;
       }));
   }
@@ -48,6 +49,6 @@ export class PlantService {
   }
 
   create(plant: Plant) {
-    return this.http.post(this.baseApiUrl + 'create', plant);
+    return this.http.post(this.baseApiUrl, plant);
   }
 }

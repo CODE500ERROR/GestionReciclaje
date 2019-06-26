@@ -58,7 +58,7 @@ export class CreateProductComponent implements OnInit {
 
  getAllParent(){
    this.categoryService.getAllParent().subscribe(data => {
-   this.parents = data.parents;
+   this.parents = data;
   }, error => {
     this.alertService.error(error);
   }, () => {
@@ -67,7 +67,7 @@ export class CreateProductComponent implements OnInit {
 
  getCategoryByParent() {
   this.categoryService.getByParent(this.createProductForm.value.parentId).subscribe(data => {
-    this.children = data.children;
+    this.children = data;
    }, error => {
      this.alertService.error(error);
    }, () => {

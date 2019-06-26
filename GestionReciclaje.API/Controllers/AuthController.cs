@@ -64,7 +64,7 @@ namespace DatingApp.API.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody]UserLoginDto userForLoginDto)
         {
-            var user = await _userManager.FindByNameAsync(userForLoginDto.Username);
+            var user = await _userManager.FindByNameAsync(userForLoginDto.Email);
 
             var result = await _signInManager
                 .CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
@@ -72,7 +72,7 @@ namespace DatingApp.API.Controllers
             if (result.Succeeded)
             {
                 var appUser = await _userManager.Users
-                    .FirstOrDefaultAsync(u => u.NormalizedUserName == userForLoginDto.Username.ToUpper());
+                    .FirstOrDefaultAsync(u => u.NormalizedUserName == userForLoginDto.Email.ToUpper());
 
                 var userToReturn = _mapper.Map<UserListDto>(appUser);
 

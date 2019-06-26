@@ -58,6 +58,14 @@ namespace DatingApp.Controllers
             return Ok(parents);
         }
 
+
+         [HttpGet("GetCategoryByParent/{id}")]
+        public IActionResult GetCategoryByParent(Guid id)
+        {
+            var parents = _categoryService.GetCategoryByParent(id);
+            return Ok(parents);
+        }
+
       
         [HttpPost()]       
         public async Task<ActionResult<int>> Create([FromBody] CategoryDto category)
@@ -88,12 +96,12 @@ namespace DatingApp.Controllers
             }
         }
 
-        [HttpDelete()]
-        public async Task<ActionResult<int>> Delete(Guid catId)
+     [HttpDelete("{Id}")]
+        public async Task<ActionResult<int>> Delete(Guid id)
         {
             try
             {
-                await _categoryService.Delete(catId);
+                await _categoryService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

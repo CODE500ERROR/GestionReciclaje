@@ -59,7 +59,8 @@ export class CreatePlantComponent implements OnInit {
 
  getAllMunicipios(){
    this.municipioService.getAll().subscribe(data =>  { 
-    this.municipios = data.municipios;
+    this.municipios = data;
+    
    }, error => {
       this.alertService.error(error);
    }, () => {

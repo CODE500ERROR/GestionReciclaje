@@ -21,13 +21,13 @@ constructor(private http: HttpClient) { }
 
 
   login(userLogin: any) {
-    return this.http.post(this.baseApiUrl + 'token', userLogin)
+    return this.http.post(this.baseApiUrl + 'Login', userLogin)
                     .pipe(
                         map((response: any) => {
-                           if (response) {
-                               localStorage.setItem('token', response.accessToken.token);
-                               this.decodedToken = this.jwtHelper.decodeToken(response.accessToken.token);
-                               localStorage.setItem('userEmail',this.decodedToken.sub);
+                           if (response) {       
+                               localStorage.setItem('token', response.token);
+                               this.decodedToken = this.jwtHelper.decodeToken(response.token);
+                               localStorage.setItem('userEmail',this.decodedToken.unique_name);
                            }
                         })
                     );
@@ -56,8 +56,7 @@ constructor(private http: HttpClient) { }
   roleMatch(allowedRoles): boolean{
 
     let isMatch = false;
-    const userRoles = this.decodedToken.role as Array<string>;
-    
+    const userRoles = this.decodedToken!=null ? this.decodedToken.role as Array<string> : [];
     allowedRoles.forEach(element => {
       if (userRoles.includes(element)) {
         isMatch = true;

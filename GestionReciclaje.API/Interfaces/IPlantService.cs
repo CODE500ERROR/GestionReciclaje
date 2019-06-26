@@ -11,7 +11,7 @@ namespace GestionReciclaje.Interfaces
     public interface IPlantService
     {
         Task<PlantDto> GetById(Guid plantId);
-        List<PlantDto> GetAllParent();
+  
         Task<PagedList<Plant>> GetAll(PlantParamsDto plantParams);
         Task<int> Create(PlantDto plantDto);
         Task<int> Delete(Guid plantId);

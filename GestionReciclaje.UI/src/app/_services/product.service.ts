@@ -27,10 +27,10 @@ export class ProductService {
     return this.http.get(this.baseApiUrl , { observe: 'response', params})
     .pipe(
       map(response => {
-          paginatedResult.filters.pageSize = response.body['pageSize'];
-          paginatedResult.filters.pageNumber = response.body['pageNumber'];
-          paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body['products'];
+          // paginatedResult.filters.pageSize = response.body['pageSize'];
+          // paginatedResult.filters.pageNumber = response.body['pageNumber'];
+          // paginatedResult.filters.totalRecords = response.body['totalRecords'];
+          paginatedResult.entity = response.body;
           return paginatedResult;
       }));
   }
@@ -48,6 +48,6 @@ export class ProductService {
   }
 
   create(product: Product) {
-    return this.http.post(this.baseApiUrl + 'create', product);
+    return this.http.post(this.baseApiUrl, product);
   }
 }

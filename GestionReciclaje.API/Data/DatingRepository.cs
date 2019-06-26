@@ -37,20 +37,8 @@ namespace DatingApp.API.Data
             var users = _context.Users
                  .OrderByDescending(u => u.CreationTime).AsQueryable();
 
-            users = users.Where(u => u.Id != userParams.UserId);
-            
-            //if (!string.IsNullOrEmpty(userParams.OrderBy))
-            //{
-            //    switch (userParams.OrderBy)
-            //    {
-            //        case "created":
-            //            users = users.OrderByDescending(u => u.CreationTime);
-            //            break;
-            //        default:
-            //            users = users.OrderByDescending(u => u.LastActive);
-            //            break;
-            //    }
-            //}
+            //users = users.Where(u => u.Id != userParams.UserId);
+    
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }

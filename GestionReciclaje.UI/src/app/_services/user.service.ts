@@ -13,7 +13,7 @@ import { PagedResult } from '../models/pagination';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.apiUrl + 'user/';
+  baseUrl = environment.apiUrl + 'users/';
 
   constructor(private http: HttpClient) {}
 
@@ -28,10 +28,11 @@ export class UserService {
     return this.http.get(this.baseUrl , { observe: 'response', params})
     .pipe(
       map(response => {
-          paginatedResult.filters.pageSize = response.body['pageSize'];
-          paginatedResult.filters.pageNumber = response.body['pageNumber'];
-          paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body['users'];
+          // paginatedResult.filters.pageSize = response.body['pageSize'];
+          // paginatedResult.filters.pageNumber = response.body['pageNumber'];
+          // paginatedResult.filters.totalRecords = response.body['totalRecords'];
+          paginatedResult.entity = response.body;
+          console.log(response);
           return paginatedResult;
       }));
   }
