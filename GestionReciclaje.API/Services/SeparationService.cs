@@ -35,6 +35,7 @@ namespace GestionReciclaje.Services
                 MeasuresUnit = separation.MeasuresUnit,
                 ProductId = separation.ProductId,
                 PlantId = separation.PlantId,
+                Quantity=separation.Quantity,
                 Description = separation.Description
             };
         }
@@ -57,6 +58,7 @@ namespace GestionReciclaje.Services
             {
                 SeparationId = separationDto.SeparationId,
                 MeasuresUnit = separationDto.MeasuresUnit,
+                Quantity=separationDto.Quantity,
                 ProductId = separationDto.ProductId,
                 PlantId = separationDto.PlantId,
                 Description = separationDto.Description
@@ -75,6 +77,7 @@ namespace GestionReciclaje.Services
             separation.ProductId = separationDto.ProductId;
             separation.PlantId = separationDto.PlantId;
             separation.Description = separationDto.Description;
+            separation.Quantity=separationDto.Quantity;
             return await _context.SaveChangesAsync();
         }
 
