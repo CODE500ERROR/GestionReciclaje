@@ -17,6 +17,7 @@ namespace BaseProject.Models
             //Notifications = new HashSet<Notification>();
         }
 
+
         public string ResetPasswordCode { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime? DeactivatedDate { get; set; }

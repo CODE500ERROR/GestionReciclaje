@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using BaseProject.Models;
 using GestionReciclaje.Models;
 using System;
+using GestionReciclaje.API.Models.Separation;
 
 namespace DatingApp.API.Data
 {
@@ -18,6 +19,7 @@ namespace DatingApp.API.Data
         public DbSet<Plant> Plants { get; set; }
         public DbSet<Municipio> Municipios{ get; set; }
         public DbSet<Category> Categories{ get; set; }
+        public DbSet<Separation> Separations{ get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -190,11 +192,23 @@ namespace DatingApp.API.Data
                    .HasForeignKey(x => x.RoleId);
             #endregion
 
-            //#region usertoken
-            //builder.Entity<UserToken>()
-            //   .HasOne(x => x.User)
-            //   .WithMany(x => x.Tokens)
-            //   .HasForeignKey(x => x.UserId);
+            //#region separation
+            builder.Entity<Separation>()
+                   .Property(x => x.IsDeleted)
+                   .HasDefaultValue(false);
+              
+              builder.Entity<Separation>()
+                   .Property(x => x.CreationTime)
+                   .HasDefaultValue(DateTime.Now);
+            builder.Entity<Separation>()
+              .HasOne(x => x.Plant)
+              .WithMany(x => x.Separations)
+              .HasForeignKey(x => x.PlantId);
+
+              builder.Entity<Separation>()
+              .HasOne(x => x.Product)
+              .WithMany(x => x.Separations)
+              .HasForeignKey(x => x.ProductId);
             //#endregion
 
         }

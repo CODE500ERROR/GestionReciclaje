@@ -46,18 +46,36 @@ namespace DatingApp
                 options.UseSqlServer(Configuration.GetConnectionString("BaseProjectDatabase")));
 
             /****AUTENTICACION */
-            IdentityBuilder builder = services.AddIdentityCore<User>(opt=>{
-                opt.Password.RequireDigit=false;
-                opt.Password.RequiredLength=4;
-                opt.Password.RequireNonAlphanumeric=false;
-                opt.Password.RequireUppercase=false;
-
+            IdentityBuilder builder = services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequiredLength = 4;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequiredUniqueChars = 0;
+                opt.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
             });
-            builder= new IdentityBuilder(builder.UserType, typeof(Role), builder.Services);
+            
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@";
+                options.User.RequireUniqueEmail = true;
+            });
+
+            
+            builder = new IdentityBuilder(builder.UserType, typeof(Role), builder.Services);
             builder.AddEntityFrameworkStores<DataContext>();
             builder.AddRoleValidator<RoleValidator<Role>>();
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();
+
+
+
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
                {
@@ -71,40 +89,41 @@ namespace DatingApp
                    };
                });
 
-               services.AddAuthorization(options =>
-            {
-                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
-                options.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
-                options.AddPolicy("VipOnly", policy => policy.RequireRole("VIP"));
-            });
+            services.AddAuthorization(options =>
+         {
+             options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+             options.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
+             options.AddPolicy("VipOnly", policy => policy.RequireRole("VIP"));
+         });
 
-              
-            services.AddMvc(option=>
+
+            services.AddMvc(option =>
             {
-                  var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                  
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddJsonOptions(opt => {
-                    opt.SerializerSettings.ReferenceLoopHandling = 
+                .AddJsonOptions(opt =>
+                {
+                    opt.SerializerSettings.ReferenceLoopHandling =
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
             services.AddCors();
-            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings")); 
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             Mapper.Reset();
             services.AddAutoMapper();
 
             services.AddTransient<Seed>();
-            
+
             services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IPlantService, PlantService>();
             services.AddScoped<IProductService, ProductService>();
-             services.AddScoped<IMunicipioService, MunicipioService>();
+            services.AddScoped<IMunicipioService, MunicipioService>();
 
             services.AddScoped<LogUserActivity>();
         }
 
-               
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
@@ -138,10 +157,10 @@ namespace DatingApp
             seeder.SeedMunicipios();
             seeder.SeedCategory();
             app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                .AllowAnyHeader().AllowAnyMethod().AllowCredentials());    
+                .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
             //app.UseCors(x => x.WithOrigins("http://localhost:4200")
-                //.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            //.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
             app.UseMvc();
         }

@@ -14,3 +14,4 @@ describe('Service: Alertify', () => {
     expect(service).toBeTruthy();
   }));
 });
+ 

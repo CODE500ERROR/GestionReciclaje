@@ -26,7 +26,7 @@ namespace GestionReciclaje.Migrations
 
                     b.Property<DateTime>("CreationTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 6, 23, 1, 1, 6, 176, DateTimeKind.Local).AddTicks(4883));
+                        .HasDefaultValue(new DateTime(2019, 6, 26, 23, 37, 49, 83, DateTimeKind.Local).AddTicks(884));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace GestionReciclaje.Migrations
 
                     b.Property<DateTime>("CreationTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 6, 23, 1, 1, 6, 177, DateTimeKind.Local).AddTicks(4503));
+                        .HasDefaultValue(new DateTime(2019, 6, 26, 23, 37, 49, 83, DateTimeKind.Local).AddTicks(9290));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace GestionReciclaje.Migrations
 
                     b.Property<DateTime>("CreationTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 6, 23, 1, 1, 6, 178, DateTimeKind.Local).AddTicks(4692));
+                        .HasDefaultValue(new DateTime(2019, 6, 26, 23, 37, 49, 84, DateTimeKind.Local).AddTicks(9402));
 
                     b.Property<string>("Description");
 
@@ -214,6 +214,38 @@ namespace GestionReciclaje.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
+            modelBuilder.Entity("GestionReciclaje.API.Models.Separation.Separation", b =>
+                {
+                    b.Property<Guid>("SeparationId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2019, 6, 26, 23, 37, 49, 90, DateTimeKind.Local).AddTicks(1864));
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("MeasuresUnit");
+
+                    b.Property<Guid>("PlantId");
+
+                    b.Property<Guid>("ProductId");
+
+                    b.Property<double>("Quantity");
+
+                    b.HasKey("SeparationId");
+
+                    b.HasIndex("PlantId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Separations");
+                });
+
             modelBuilder.Entity("GestionReciclaje.Models.Category", b =>
                 {
                     b.Property<Guid>("CategoryId")
@@ -221,7 +253,7 @@ namespace GestionReciclaje.Migrations
 
                     b.Property<DateTime>("CreationTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 6, 23, 1, 1, 6, 173, DateTimeKind.Local).AddTicks(6508));
+                        .HasDefaultValue(new DateTime(2019, 6, 26, 23, 37, 49, 80, DateTimeKind.Local).AddTicks(3891));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -399,6 +431,19 @@ namespace GestionReciclaje.Migrations
                     b.HasOne("BaseProject.Models.User", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("GestionReciclaje.API.Models.Separation.Separation", b =>
+                {
+                    b.HasOne("BaseProject.Models.Plant", "Plant")
+                        .WithMany("Separations")
+                        .HasForeignKey("PlantId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BaseProject.Models.Product", "Product")
+                        .WithMany("Separations")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

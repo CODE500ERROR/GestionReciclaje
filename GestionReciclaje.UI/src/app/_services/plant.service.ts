@@ -31,7 +31,6 @@ export class PlantService {
           // paginatedResult.filters.pageNumber = response.body['pageNumber'];
           // paginatedResult.filters.totalRecords = response.body['totalRecords'];
           paginatedResult.entity = response.body;   
-          console.log(response);       
           return paginatedResult;
       }));
   }

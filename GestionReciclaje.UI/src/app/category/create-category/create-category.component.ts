@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 })
 export class CreateCategoryComponent implements OnInit {
   categoryRegister: Category;
-  parents: Category[];
+  parents: any[];
   createCategoryForm: FormGroup;
   municipios: any[];
 

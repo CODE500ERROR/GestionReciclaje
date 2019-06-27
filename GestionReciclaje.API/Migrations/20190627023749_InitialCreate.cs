@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GestionReciclaje.Migrations
 {
-    public partial class InitialMigrations : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace GestionReciclaje.Migrations
                     CategoryId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
-                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 23, 1, 1, 6, 173, DateTimeKind.Local).AddTicks(6508)),
+                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 26, 23, 37, 49, 80, DateTimeKind.Local).AddTicks(3891)),
                     ParentId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -49,7 +49,7 @@ namespace GestionReciclaje.Migrations
                 {
                     MunicipioId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 23, 1, 1, 6, 176, DateTimeKind.Local).AddTicks(4883)),
+                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 26, 23, 37, 49, 83, DateTimeKind.Local).AddTicks(884)),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -88,7 +88,7 @@ namespace GestionReciclaje.Migrations
                     Description = table.Column<string>(nullable: true),
                     CategoryId = table.Column<Guid>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
-                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 23, 1, 1, 6, 178, DateTimeKind.Local).AddTicks(4692))
+                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 26, 23, 37, 49, 84, DateTimeKind.Local).AddTicks(9402))
                 },
                 constraints: table =>
                 {
@@ -108,7 +108,7 @@ namespace GestionReciclaje.Migrations
                     PlantId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Address = table.Column<string>(maxLength: 200, nullable: false),
-                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 23, 1, 1, 6, 177, DateTimeKind.Local).AddTicks(4503)),
+                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 26, 23, 37, 49, 83, DateTimeKind.Local).AddTicks(9290)),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
                     OperatorsQuantity = table.Column<int>(nullable: false),
                     MunicipioId = table.Column<Guid>(nullable: false)
@@ -163,6 +163,36 @@ namespace GestionReciclaje.Migrations
                         principalTable: "Plants",
                         principalColumn: "PlantId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Separations",
+                columns: table => new
+                {
+                    SeparationId = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    ProductId = table.Column<Guid>(nullable: false),
+                    PlantId = table.Column<Guid>(nullable: false),
+                    Quantity = table.Column<double>(nullable: false),
+                    MeasuresUnit = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 6, 26, 23, 37, 49, 90, DateTimeKind.Local).AddTicks(1864)),
+                    IsDeleted = table.Column<bool>(nullable: false, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Separations", x => x.SeparationId);
+                    table.ForeignKey(
+                        name: "FK_Separations_Plants_PlantId",
+                        column: x => x.PlantId,
+                        principalTable: "Plants",
+                        principalColumn: "PlantId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Separations_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -342,6 +372,16 @@ namespace GestionReciclaje.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Separations_PlantId",
+                table: "Separations",
+                column: "PlantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Separations_ProductId",
+                table: "Separations",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -362,7 +402,7 @@ namespace GestionReciclaje.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Separations");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -371,10 +411,13 @@ namespace GestionReciclaje.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Plants");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Municipios");
