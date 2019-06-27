@@ -25,9 +25,25 @@ namespace DatingApp.API.Controllers
             _repo = repo;
         }
 
+        public Guid GetIdUser()
+       {
+           var currentUser = Helper.HttpContext.Current.User.Claims;
+           var result = Guid.Empty;
+           foreach (var i in currentUser)
+           {
+               if (i.Type.Equals("NameIdentifier"))
+               {
+                   result = Guid.Parse(i.Value);
+               }
+           }
+
+           return result;
+       }
         [HttpGet]   
         public async Task<IActionResult> GetAll([FromQuery]UserParams userParams)
         {
+            var currentUserId=User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
            // var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             //var userFromRepo = await _repo.GetUser(currentUserId);
            // userParams.UserId = currentUserId;
