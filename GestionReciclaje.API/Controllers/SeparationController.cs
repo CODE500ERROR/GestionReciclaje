@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Data;
 using GestionReciclaje.Dtos;
-using GestionReciclaje.Dtos.Separation;
 using GestionReciclaje.Interfaces;
 using GestionReciclaje.Models;
 using Microsoft.AspNetCore.Authorization;

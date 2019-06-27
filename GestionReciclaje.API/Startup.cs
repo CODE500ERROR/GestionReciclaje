@@ -119,7 +119,7 @@ namespace DatingApp
             services.AddScoped<IPlantService, PlantService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IMunicipioService, MunicipioService>();
-
+            services.AddScoped<ISeparationService, SeparationService>();
             services.AddScoped<LogUserActivity>();
         }
 
