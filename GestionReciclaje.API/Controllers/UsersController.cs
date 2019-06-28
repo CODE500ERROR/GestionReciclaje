@@ -31,7 +31,7 @@ namespace DatingApp.API.Controllers
            var result = Guid.Empty;
            foreach (var i in currentUser)
            {
-               if (i.Type.Equals("NameIdentifier"))
+               if (i.Type.Equals("nameid"))
                {
                    result = Guid.Parse(i.Value);
                }
@@ -42,7 +42,7 @@ namespace DatingApp.API.Controllers
         [HttpGet]   
         public async Task<IActionResult> GetAll([FromQuery]UserParams userParams)
         {
-            var currentUserId=User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUserId=GetIdUser();
             
            // var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             //var userFromRepo = await _repo.GetUser(currentUserId);

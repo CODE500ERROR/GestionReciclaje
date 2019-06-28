@@ -57,7 +57,7 @@ namespace DatingApp
                 opt.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
             });
-            
+           
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -120,6 +120,7 @@ namespace DatingApp
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IMunicipioService, MunicipioService>();
             services.AddScoped<ISeparationService, SeparationService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<LogUserActivity>();
         }
 
