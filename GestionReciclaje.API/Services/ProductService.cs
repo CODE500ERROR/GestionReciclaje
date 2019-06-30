@@ -34,7 +34,7 @@ namespace GestionReciclaje.Services
                 Name= product.Name,
                 Description= product.Description,
                 CategoryId= product.CategoryId,
-                ParentId=product.Category.ParentId                
+                CategoryParentId=product.Category.ParentId                
             };
         }
 

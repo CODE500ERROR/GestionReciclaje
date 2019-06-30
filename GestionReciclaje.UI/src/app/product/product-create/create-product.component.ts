@@ -34,7 +34,7 @@ export class CreateProductComponent implements OnInit {
         {
           name: ['', Validators.required],
           description: [''],
-          parentId : [''],
+          categoryParentId : [''],
           categoryId: ['', Validators.required]
         }
     );
@@ -67,7 +67,7 @@ export class CreateProductComponent implements OnInit {
  }
 
  getCategoryByParent() {
-  this.categoryService.getByParent(this.createProductForm.value.parentId).subscribe(data => {
+  this.categoryService.getByParent(this.createProductForm.value.categoryParentId).subscribe(data => {
     this.children = data;
    }, error => {
      this.alertService.error(error);

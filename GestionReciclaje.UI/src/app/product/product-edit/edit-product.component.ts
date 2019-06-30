@@ -39,7 +39,7 @@ export class EditProductComponent implements OnInit {
         name: [this.product.name, Validators.required],
         description: [this.product.description],
         categoryId: [this.product.categoryId, Validators.required ],
-        parentId: [this.product.parentId ],
+        categoryParentId: [this.product.categoryParentId ],
        }
      );
    }
@@ -70,7 +70,7 @@ export class EditProductComponent implements OnInit {
 
   getCategoryByParent() {
     debugger;
-    this.categoryService.getByParent(this.updateProductForm.value.parentId).subscribe(data => {
+    this.categoryService.getByParent(this.updateProductForm.value.categoryParentId).subscribe(data => {
       this.children = data;
      }, error => {
        this.alertService.error(error);

@@ -68,5 +68,13 @@ constructor(private http: HttpClient) { }
   }
 
 
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    this.decodedToken = null;
+    this.currentUser = null;
+  }
+
+
 
 }

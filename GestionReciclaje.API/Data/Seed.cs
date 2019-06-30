@@ -67,14 +67,18 @@ namespace DatingApp.API.Data
 
         public void SeedCategory()
         {
-            for (int i = 0; i < 6; i++)
+            if (!_context.Categories.Any())
             {
-                var category = new Category()
+                for (int i = 0; i < 6; i++)
                 {
-                    Name = "Categoria0" + i
-                };
-                _context.Categories.Add(category);
+                    var category = new Category()
+                    {
+                        Name = "Categoria0" + i
+                    };
+                    _context.Categories.Add(category);
+                }
             }
+
             _context.SaveChanges();
         }
 
@@ -82,11 +86,15 @@ namespace DatingApp.API.Data
 
         public void SeedMunicipios()
         {
-            var municipio = new Municipio()
+            if (!_context.Municipios.Any())
             {
-                Name = "Resistencia"
-            };
-            _context.Municipios.Add(municipio);
+                var municipio = new Municipio()
+                {
+                    Name = "Resistencia"
+                };
+                _context.Municipios.Add(municipio);
+            }
+
             _context.SaveChanges();
         }
 

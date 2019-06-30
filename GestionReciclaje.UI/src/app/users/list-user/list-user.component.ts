@@ -43,7 +43,6 @@ export class ListUserComponent implements OnInit, AfterViewInit  {
     this.route.data.subscribe(data => {
       // this.users = data.users.entity;
       this.dataSource.data =  data.users.entity as User[];
-      console.log(data.users);
       this.filters = data.users.filters;
     });
   }

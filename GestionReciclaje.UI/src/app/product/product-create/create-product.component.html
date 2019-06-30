@@ -18,8 +18,8 @@
 
   <mat-form-field>
     <mat-label>Seleccione una categoría</mat-label>
-    <mat-select [value]="createProductForm.get('parentId').value"
-                formControlName="parentId" (selectionChange)="getCategoryByParent($event)">
+    <mat-select [value]="createProductForm.get('categoryParentId').value"
+                formControlName="categoryParentId" (selectionChange)="getCategoryByParent($event)">
       <mat-option *ngFor="let item of parents" value="{{item.categoryId}}">{{item.name}}</mat-option>
     </mat-select>
  

@@ -63,5 +63,5 @@ export const appRoutes: Routes = [
                                                                         , data: {roles: ['Admin', 'Super Admin','Operator']} },
         ]
      },
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: '**', redirectTo: 'login', pathMatch: 'full'},
 ];

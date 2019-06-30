@@ -4,5 +4,5 @@ export class Product {
   name: string;
   description: string;
   categoryId: string;
-  parentId: string;
+  categoryParentId: string;
 }

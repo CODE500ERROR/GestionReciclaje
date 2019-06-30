@@ -42,7 +42,7 @@ namespace DatingApp.API.Controllers
         [HttpGet]   
         public async Task<IActionResult> GetAll([FromQuery]UserParams userParams)
         {
-            var currentUserId=GetIdUser();
+           // var currentUserId=GetIdUser();
             
            // var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             //var userFromRepo = await _repo.GetUser(currentUserId);

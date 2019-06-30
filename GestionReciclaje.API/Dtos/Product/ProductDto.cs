@@ -9,6 +9,7 @@ namespace GestionReciclaje.Dtos
         public string Description { get; set; }
         public Guid CategoryId { get; set; }
         public string CategoryName{get;set;}        
-        public Guid? ParentId { get; set; }
+        //[System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public Guid? CategoryParentId { get; set; }
     }
 }
