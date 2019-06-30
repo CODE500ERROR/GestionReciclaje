@@ -28,8 +28,7 @@ export class EditUserComponent implements OnInit, AfterViewInit {
  
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.user = (data.user);
-      console.log(this.user);
+      this.user = (data.user);    
       this.createUpdateForm();
       this.getAllPlant();
      
@@ -79,7 +78,7 @@ export class EditUserComponent implements OnInit, AfterViewInit {
 
   getAllRoles(){
     this.rolesSerice.getAllRoles().subscribe( data =>  {
-     this.roles = data.roles;
+     this.roles = data;
      this.matchRoles();
     }, error => {
       this.alertService.error(error);

@@ -7,5 +7,6 @@ export class User {
   firstName: string;
   lastName: string;
   plantId: string;
+  plantName: string;
   roles: string[];
 }

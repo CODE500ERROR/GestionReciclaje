@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -48,7 +48,7 @@ export class CreateUserComponent implements OnInit {
         phoneNumber: [''],
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(10)] ],
         confirmPassword: [''],
-        roles: [this.userRegister.roles],
+        roles: [this.addRolesControl()],
         plantId: ['',  Validators.required]
       },
       {
@@ -59,12 +59,19 @@ export class CreateUserComponent implements OnInit {
 
   get f() { return this.createUserForm.controls; }
 
+  addRolesControl() {
+    const arr = this.roles.map(element => {
+      return this.fb.control(false);
+    });
+    return this.fb.array(arr);
+  }
 
+  get rolesArray(){
+    return this.createUserForm.get('roles') as FormArray;
+  }
   save() {
-  
-
      if (this.createUserForm.invalid) {return; }
-     
+
      this.userRegister = Object.assign({}, this.createUserForm.value);
      this.userRegister.roles = this.getRolesSelected();
      this.authService.register(this.userRegister).subscribe(() => {

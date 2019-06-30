@@ -28,6 +28,7 @@ export class UserService {
     return this.http.get(this.baseUrl , { observe: 'response', params})
     .pipe(
       map(response => {
+        console.log(response.body['list']);
           paginatedResult.entity = response.body['list'];
           paginatedResult.filters.totalRecords = response.body['totalRecords'];
           return paginatedResult;

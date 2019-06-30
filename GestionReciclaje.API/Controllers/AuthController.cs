@@ -50,7 +50,7 @@ namespace DatingApp.API.Controllers
 
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
 
-            var userToReturn = _mapper.Map<UserDetailedDto>(userToCreate);
+            var userToReturn = _mapper.Map<UserDetailDto>(userToCreate);
 
             if (result.Succeeded)
             {
