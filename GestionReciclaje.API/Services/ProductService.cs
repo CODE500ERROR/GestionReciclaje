@@ -40,13 +40,14 @@ namespace GestionReciclaje.Services
 
        
 
-        public async Task<PagedList<Product>> GetAll(ProductParamsDto ProdcutParams)
+        public async Task<PagedList<Product>> GetAll(ProductParamsDto prodcutParams)
         {
             var data = _context.Products .Include(x=>x.Category)
                                          .OrderByDescending(x => x.CreationTime)
                                          .Where(x => !x.IsDeleted)
                                          .AsQueryable(); //.ProjectTo<Product>(_mapper.ConfigurationProvider);
-            return await PagedList<Product>.CreateAsync(data, ProdcutParams.PageNumber, ProdcutParams.PageSize); ;
+            prodcutParams.TotalRecords= data.Count();
+            return await PagedList<Product>.CreateAsync(data, prodcutParams.PageNumber, prodcutParams.PageSize); ;
         }
 
         public async Task<int> Create(ProductDto product)

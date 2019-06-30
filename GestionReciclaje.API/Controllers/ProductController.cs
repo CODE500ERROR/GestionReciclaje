@@ -33,11 +33,14 @@ namespace DatingApp.Controllers
         
         //[Authorize(Policy="VipOnly")]
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery]ProductParamsDto ProductParams)
+        public async Task<IActionResult> GetAll([FromQuery]ProductParamsDto productParams)
         {
-            var products = await  _productService.GetAll(ProductParams);
+            var products = await  _productService.GetAll(productParams);
             var result= _mapper.Map<IEnumerable<ProductDto>>(products);
-            return Ok(result);            
+            return Ok(new {
+                List=result,
+                TotalRecords=productParams.TotalRecords
+            });            
         }
 
 

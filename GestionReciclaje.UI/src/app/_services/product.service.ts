@@ -17,6 +17,7 @@ export class ProductService {
 
 
   getAll(filters: ProductFilter): Observable<PagedResult<any[]>> {
+
     let params = new HttpParams();
     const paginatedResult: PagedResult<any[]> = new PagedResult<any[]>();
     params = params.append('pageNumber', filters.pageNumber != null ? filters.pageNumber .toString() :  null );
@@ -30,7 +31,8 @@ export class ProductService {
           // paginatedResult.filters.pageSize = response.body['pageSize'];
           // paginatedResult.filters.pageNumber = response.body['pageNumber'];
           // paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body;
+          paginatedResult.entity = response.body['list'];
+          paginatedResult.filters.totalRecords = response.body['totalRecords'];
           return paginatedResult;
       }));
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, PageEvent } from '@angular/material';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/_services/product.service';
@@ -15,29 +15,35 @@ import { ProductFilter } from 'src/app/models/product-filter';
 export class ListProductComponent implements OnInit, AfterViewInit {
   
   filters = new ProductFilter();
+  
   displayedColumns: string[] = [ 'name', 'categoryName', 'description' , 'actions'];
+
   public dataSource = new MatTableDataSource<Product>();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
   constructor(private route: ActivatedRoute, private router: Router,  private alertify: AlertifyService,
-              private productService: ProductService,  public dialogService: ModalService) { }
+              private productService: ProductService,  public dialogService: ModalService) { 
+                
+              }
 
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.dataSource.data =  data.products.entity as Product[];
+      this.filters.totalRecords = data.products.filters.totalRecords;
       // this.filters = data.product.filters;
     });
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
   }
 
  pageChanged(event: any): void {
-    this.filters.pageNumber = event.page;
+    this.filters.pageNumber = event.pageIndex + 1;
+    this.filters.pageSize = event.pageSize;
     this.getAll();
   }
 
@@ -45,8 +51,7 @@ export class ListProductComponent implements OnInit, AfterViewInit {
   getAll()  {
     this.productService.getAll(this.filters).subscribe((res) => {
       // this.dataSource.data = res.product.entity as product[];
-      // this.filters = res.product.filters;
-      console.log(res);
+      // this.filters = res.product.filters; 
     }, error => {
       this.alertify.error(error);
     });
