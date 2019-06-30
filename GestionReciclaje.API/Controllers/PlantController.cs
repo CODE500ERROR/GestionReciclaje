@@ -7,11 +7,7 @@ using DatingApp.API.Data;
 using GestionReciclaje.Dtos;
 using GestionReciclaje.Dtos.Plant;
 using GestionReciclaje.Interfaces;
-using GestionReciclaje.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.Controllers
 {
@@ -38,7 +34,10 @@ namespace DatingApp.Controllers
         {
             var plants = await  _plantService.GetAll(plantParams);
             var result= _mapper.Map<IEnumerable<PlantDto>>(plants);
-            return Ok(result);            
+            return Ok(new {
+                List=result,
+                TotalRecords=plantParams.TotalRecords
+            });            
         }
 
 

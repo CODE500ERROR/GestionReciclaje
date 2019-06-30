@@ -47,6 +47,7 @@ namespace GestionReciclaje.Services
                                          .Where(x => !x.IsDeleted &&
                                                          (string.IsNullOrEmpty(plantParams.Name) || x.Name.Contains(plantParams.Name)))
                                          .AsQueryable(); //.ProjectTo<PlantDto>(_mapper.ConfigurationProvider);
+            plantParams.TotalRecords= data.Count();
             return await PagedList<Plant>.CreateAsync(data, plantParams.PageNumber, plantParams.PageSize); ;
         }
 
