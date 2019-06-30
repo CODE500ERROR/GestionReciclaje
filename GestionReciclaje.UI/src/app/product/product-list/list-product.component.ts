@@ -23,8 +23,7 @@ export class ListProductComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private route: ActivatedRoute, private router: Router,  private alertify: AlertifyService,
-              private productService: ProductService,  public dialogService: ModalService) { 
-                
+              private productService: ProductService,  public dialogService: ModalService) {
               }
 
 
@@ -32,7 +31,6 @@ export class ListProductComponent implements OnInit, AfterViewInit {
     this.route.data.subscribe(data => {
       this.dataSource.data =  data.products.entity as Product[];
       this.filters.totalRecords = data.products.filters.totalRecords;
-      // this.filters = data.product.filters;
     });
   }
 
@@ -50,8 +48,7 @@ export class ListProductComponent implements OnInit, AfterViewInit {
 
   getAll()  {
     this.productService.getAll(this.filters).subscribe((res) => {
-      // this.dataSource.data = res.product.entity as product[];
-      // this.filters = res.product.filters; 
+      this.dataSource.data = res.entity as Product[];
     }, error => {
       this.alertify.error(error);
     });

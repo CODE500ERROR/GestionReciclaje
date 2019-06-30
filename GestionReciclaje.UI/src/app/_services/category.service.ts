@@ -27,12 +27,9 @@ export class CategoryService {
     return this.http.get(this.baseApiUrl , { observe: 'response', params})
     .pipe(
       map(response => {
-
-          // paginatedResult.filters.pageSize = response.body['pageSize'];
-          // paginatedResult.filters.pageNumber = response.body['pageNumber'];
-          // paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body;
-          return paginatedResult;
+        paginatedResult.entity = response.body['list'];
+        paginatedResult.filters.totalRecords = response.body['totalRecords'];
+        return paginatedResult;
       }));
   }
 

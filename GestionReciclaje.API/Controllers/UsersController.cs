@@ -50,10 +50,12 @@ namespace DatingApp.API.Controllers
             
             var users = await _repo.GetUsers(userParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserListDto>>(users);
-            Response.AddPagination(users.CurrentPage, users.PageSize,
-                users.TotalCount, users.TotalPages);
+           
 
-            return Ok(usersToReturn);
+            return Ok(new{
+                List=usersToReturn,
+                TotalRecords =userParams.TotalRecords
+            });
         }
 
         [HttpGet("{id}", Name="GetUser")]

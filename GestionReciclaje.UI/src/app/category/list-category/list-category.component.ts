@@ -27,25 +27,26 @@ export class ListCategoryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.dataSource.data =  data.categories.entity as Category[];
-      // this.filters = data.category.filters;
+      this.filters.totalRecords = data.categories.filters.totalRecords;
+
     });
   }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
  pageChanged(event: any): void {
-    this.filters.pageNumber = event.page;
-    this.getAll();
+  this.filters.pageNumber = event.pageIndex + 1;
+  this.filters.pageSize = event.pageSize;
+  this.getAll();
   }
 
 
   getAll()  {
     this.categoryService.getAll(this.filters).subscribe((res) => {
-      // this.dataSource.data = res.category.entity as category[];
-      // this.filters = res.category.filters;
+      this.dataSource.data = res.entity as Category[];
       console.log(res);
     }, error => {
       this.alertify.error(error);

@@ -37,7 +37,10 @@ namespace DatingApp.Controllers
         {
             var categories = await  _categoryService.GetAll(catParams);
             var result= _mapper.Map<IEnumerable<CategoryDto>>(categories);
-            return Ok(result);            
+            return Ok(new {
+                List=result,
+                TotalRecords=catParams.TotalRecords
+            });            
         }
 
 

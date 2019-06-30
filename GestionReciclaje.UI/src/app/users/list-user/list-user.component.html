@@ -103,13 +103,11 @@
     
  
 
-    <mat-paginator #paginator
-       
-        
+    <mat-paginator #paginator       
+        [pageSize]="5"
         (page)="pageChanged($event)"
         [length]="filters.totalRecords"
         showFirstLastButtons
         [pageSizeOptions]="[5,25, 50, 100, 250]">
-      <!-- [pageIndex]="pagination.pageNumber -->
     </mat-paginator>
 </div>

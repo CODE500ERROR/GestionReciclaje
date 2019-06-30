@@ -34,16 +34,15 @@ export class ListUserComponent implements OnInit, AfterViewInit  {
 
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;    
   }
   
   ngOnInit() {
     this.route.data.subscribe(data => {
-      // this.users = data.users.entity;
+      console.log(data);
       this.dataSource.data =  data.users.entity as User[];
-      this.filters = data.users.filters;
+      this.filters.totalRecords = data.users.filters.totalRecords;
     });
   }
 
@@ -53,7 +52,6 @@ export class ListUserComponent implements OnInit, AfterViewInit  {
   }
 
   getAll() {
-    console.log(this.dataSource);
     this.userService.getUsers(this.filters).subscribe((res) => {
       this.dataSource.data = res.entity as User[];
     }, error => {
@@ -63,7 +61,8 @@ export class ListUserComponent implements OnInit, AfterViewInit  {
   }
 
   pageChanged(event: any): void {
-    this.filters.pageNumber = event.page;
+    this.filters.pageNumber = event.pageIndex + 1;
+    this.filters.pageSize = event.pageSize;
     this.getAll();
   }
 

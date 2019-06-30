@@ -38,7 +38,7 @@ namespace DatingApp.API.Data
                  .OrderByDescending(u => u.CreationTime).AsQueryable();
 
             //users = users.Where(u => u.Id != userParams.UserId);
-    
+            userParams.TotalRecords = users.Count();
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
