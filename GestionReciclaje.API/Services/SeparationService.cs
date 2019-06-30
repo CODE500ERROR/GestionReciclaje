@@ -60,7 +60,7 @@ namespace GestionReciclaje.Services
                 MeasuresUnit = separationDto.MeasuresUnit,
                 Quantity=separationDto.Quantity,
                 ProductId = separationDto.ProductId,
-                PlantId = separationDto.PlantId,
+                PlantId = separationDto.PlantId.Value,
                 Description = separationDto.Description
             };
             var result = await _context.Separations.AddAsync(separation);
@@ -75,7 +75,7 @@ namespace GestionReciclaje.Services
             separation.SeparationId= separationDto.SeparationId;
             separation.MeasuresUnit = separationDto.MeasuresUnit;
             separation.ProductId = separationDto.ProductId;
-            separation.PlantId = separationDto.PlantId;
+            separation.PlantId = separationDto.PlantId.Value;
             separation.Description = separationDto.Description;
             separation.Quantity=separationDto.Quantity;
             return await _context.SaveChangesAsync();

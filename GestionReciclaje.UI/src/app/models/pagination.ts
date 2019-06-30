@@ -9,7 +9,7 @@ export class PagedResult<T> {
     entity: any;
     filters: FilterBase;
 
-    constructor(){
+    constructor() {
         this.filters = new FilterBase();
     }
 }

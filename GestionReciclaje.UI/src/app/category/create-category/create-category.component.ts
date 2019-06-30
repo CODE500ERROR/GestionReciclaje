@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 })
 export class CreateCategoryComponent implements OnInit {
   categoryRegister: Category;
-  parents: any[];
+  parents: Category[];
   createCategoryForm: FormGroup;
   municipios: any[];
 
@@ -52,10 +52,10 @@ export class CreateCategoryComponent implements OnInit {
 
  getAllParent(){
    this.categoryService.getAllParent().subscribe(data => {
-   this.parents = data;
+     this.parents = data as unknown as Category[];
   }, error => {
     this.alertService.error(error);
-  }, () => {   
+  }, () => {
   });
  }
 

@@ -200,6 +200,7 @@ namespace DatingApp.API.Data
               builder.Entity<Separation>()
                    .Property(x => x.CreationTime)
                    .HasDefaultValue(DateTime.Now);
+                   
             builder.Entity<Separation>()
               .HasOne(x => x.Plant)
               .WithMany(x => x.Separations)

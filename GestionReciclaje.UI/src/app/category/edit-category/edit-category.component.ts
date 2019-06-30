@@ -54,7 +54,7 @@ export class EditCategoryComponent implements OnInit {
 
   getAllParent(){
     this.categoryService.getAllParent().subscribe(data => {
-    this.parents = data;
+      this.parents = data as unknown as Category[];
    }, error => {
      this.alertService.error(error);
    }, () => {   

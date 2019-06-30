@@ -24,7 +24,7 @@ constructor(private http: HttpClient) { }
     return this.http.post(this.baseApiUrl + 'Login', userLogin)
                     .pipe(
                         map((response: any) => {
-                           if (response) {       
+                           if (response) {
                                localStorage.setItem('token', response.token);
                                this.decodedToken = this.jwtHelper.decodeToken(response.token);
                                localStorage.setItem('userEmail',this.decodedToken.unique_name);

@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
-import { CreateUserComponent, } from './users/create-user/create-user.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
 import { ErrorInterceptorProvider } from './_helpers/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { ListUserComponent } from './users/list-user/list-user.component';
@@ -16,7 +16,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { UserService } from './_services/user.service';
 
 // ngx bootstrap
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationComponent, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import {
+  BsDropdownModule,
+  TabsModule,
+  BsDatepickerModule,
+  PaginationComponent,
+  PaginationModule,
+  ButtonsModule
+} from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { ModalModule } from 'ngx-bootstrap';
@@ -26,10 +33,9 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 // jwt
 import { JwtModule } from '@auth0/angular-jwt';
 
-
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -46,19 +52,30 @@ import { LoaderInterceptor } from './_helpers/loader.interceptor';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { RolesService } from './_services/roles.service';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {
+  MatToolbarModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatButtonModule,
+  MatMenuModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatGridListModule,
+  MatSidenavModule,
+  MatListModule,
+  MatSelectModule
+} from '@angular/material';
 
-
-import {MatToolbarModule, MatExpansionModule, MatIconModule,
-         MatButtonModule, MatMenuModule, MatCardModule,
-         MatFormFieldModule, MatInputModule, MatTableModule,
-         MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatRadioModule,
-         MatCheckboxModule, MatDialogModule, MatGridListModule, 
-         MatSidenavModule, MatListModule , MatSelectModule }
-         from '@angular/material';
-      
 import { ModalConfirmComponent } from './_helpers/modal-confirm/modal-confirm.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -71,7 +88,6 @@ import { EditCategoryComponent } from './category/edit-category/edit-category.co
 import { CreateCategoryComponent } from './category/create-category/create-category.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
 
-
 import { ListProductResolver } from './_resolvers/list-product-resolvers';
 import { ListCategoryResolver } from './_resolvers/list-category-resolvers';
 import { DetailProductResolver } from './_resolvers/detail-product-resolvers';
@@ -80,113 +96,122 @@ import { EditProductComponent } from './product/product-edit/edit-product.compon
 import { CreateProductComponent } from './product/product-create/create-product.component';
 import { ListProductComponent } from './product/product-list/list-product.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
-
-
+import { CreateSeparationComponent } from './separation/create-separation/create-separation.component';
+import { EditSeparationComponent } from './separation/edit-separation/edit-separation.component';
+import { ListSeparationComponent } from './separation/list-separation/list-separation.component';
+import { ListSeparationResolver } from './_resolvers/list-separation-resolvers';
+import { DetailSeparationResolver } from './_resolvers/detail-separation-resolvers';
+import { SeparationService } from './_services/separation.service';
 
 export function tokenGetter() {
-   return localStorage.getItem('token');
- }
+  return localStorage.getItem('token');
+}
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-   suppressScrollX: true
- };
+  suppressScrollX: true
+};
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      SidebarComponent,
-      HomeComponent,
-      LoginComponent,
-      CreateUserComponent,
-      LoaderComponent,
-      ListUserComponent,
-      EditUserComponent,
-      TimeAgoPipe,
-      ModalConfirmComponent,
-      NavbarComponent,
-      ListPlantComponent,
-      CreatePlantComponent,
-      EditPlantComponent,
-      ListCategoryComponent,
-      CreateCategoryComponent,
-      EditCategoryComponent,
-      ListProductComponent,
-      CreateProductComponent,
-      EditProductComponent,
-      HasRoleDirective
-   ],
-   imports: [
-      BrowserModule,
-      HttpClientModule,
-      FormsModule,
-      AppRoutingModule,
-      MatSelectModule,
-      MatSortModule,
-      MatGridListModule,
-      MatRadioModule,
-      MatDialogModule,
-      MatCheckboxModule,
-      MatProgressSpinnerModule,
-      MatPaginatorModule,
-      MatTableModule,
-      MatExpansionModule,
-      MatIconModule,
-      MatFormFieldModule,
-      MatCardModule,
-      MatMenuModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatButtonModule,
-      MatInputModule,
-      RouterModule.forRoot(appRoutes),
-      NgxGalleryModule,
-      FileUploadModule,
-      PaginationModule.forRoot(),
-      ReactiveFormsModule,
-      ButtonsModule.forRoot(),
-      PerfectScrollbarModule,
-      JwtModule.forRoot({
-         config: {
-           tokenGetter,
-           whitelistedDomains: ['localhost:52676'],
-           blacklistedRoutes: ['localhost:52676/api/auth']
-         }
-       }),
-      BrowserAnimationsModule,
-      LayoutModule,
-      MatSidenavModule,
-      MatListModule,
-   ],
-   providers: [
-      AuthService,
-      LoaderService,
-      RolesService,
-      AuthGuard,
-      ErrorInterceptorProvider,
-      LoaderInterceptor,
-      AlertifyService,
-      DetailUserResolver,
-      ListUserResolver,
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    HomeComponent,
+    LoginComponent,
+    CreateUserComponent,
+    LoaderComponent,
+    ListUserComponent,
+    EditUserComponent,
+    TimeAgoPipe,
+    ModalConfirmComponent,
+    NavbarComponent,
+    ListPlantComponent,
+    CreatePlantComponent,
+    EditPlantComponent,
+    ListCategoryComponent,
+    CreateCategoryComponent,
+    EditCategoryComponent,
+    ListProductComponent,
+    CreateProductComponent,
+    EditProductComponent,
+    CreateSeparationComponent,
+    EditSeparationComponent,
+    ListSeparationComponent,
+    HasRoleDirective
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    MatSelectModule,
+    MatSortModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    RouterModule.forRoot(appRoutes),
+    NgxGalleryModule,
+    FileUploadModule,
+    PaginationModule.forRoot(),
+    ReactiveFormsModule,
+    ButtonsModule.forRoot(),
+    PerfectScrollbarModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: ['localhost:52676'],
+        blacklistedRoutes: ['localhost:52676/api/auth']
+      }
+    }),
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
+  ],
+  providers: [
+    AuthService,
+    LoaderService,
+    RolesService,
+    AuthGuard,
+    ErrorInterceptorProvider,
+    LoaderInterceptor,
+    AlertifyService,
+    DetailUserResolver,
+    ListUserResolver,
 
-      ListPlantResolver,
-      DetailPlantResolver,
+    SeparationService,
+    ListSeparationResolver,
+    DetailSeparationResolver,
 
-      ListCategoryResolver,
-      DetailCategoryResolver,
+    ListPlantResolver,
+    DetailPlantResolver,
 
-      ListProductResolver,
-      DetailProductResolver,
+    ListCategoryResolver,
+    DetailCategoryResolver,
 
-      PreventUnsavedChanges,
-      UserService,
-      {
-         provide: PERFECT_SCROLLBAR_CONFIG,
-         useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-       }
-   ],
-   entryComponents: [ ListUserComponent, ModalConfirmComponent],
-   bootstrap: [
-      AppComponent
-   ]
+    ListProductResolver,
+    DetailProductResolver,
+
+    PreventUnsavedChanges,
+    UserService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
+  entryComponents: [ListUserComponent, ModalConfirmComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

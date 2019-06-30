@@ -58,6 +58,7 @@ namespace DatingApp.Controllers
         {
             try
             {
+                Separation.PlantId=Guid.Parse("A47428F7-9015-4518-2ED1-08D6FD7CF416");
                 await _separationService.Create(Separation);
                 return Ok();
             }
@@ -73,6 +74,7 @@ namespace DatingApp.Controllers
         {
             try
             {
+                Separation.PlantId = Guid.Parse("A47428F7-9015-4518-2ED1-08D6FD7CF416");
                 await _separationService.Update(Separation);
                 return Ok();
             }

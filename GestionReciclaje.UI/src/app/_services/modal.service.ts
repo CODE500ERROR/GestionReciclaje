@@ -9,13 +9,13 @@ export class ModalService {
 
   constructor(private dialog: MatDialog) { }
 
-  openConfirmDialog(msg){
-    return this.dialog.open(ModalConfirmComponent,{
+  openConfirmDialog(msg) {
+    return this.dialog.open(ModalConfirmComponent, {
        width: '390px',
        panelClass: 'confirm-dialog-container',
        disableClose: true,
        position: {  },
-       data :{
+       data : {
          message : msg
        }
      });

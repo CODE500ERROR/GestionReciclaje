@@ -6,7 +6,7 @@ namespace GestionReciclaje.Dtos
     {
         public Guid  SeparationId{ get; set; }
         public string Description { get; set; }
-        public Guid PlantId { get; set; }
+        public Guid? PlantId { get; set; }
         public string PlantName { get; set; }
         public Guid ProductId { get; set; }        
         public double  Quantity{ get; set; }

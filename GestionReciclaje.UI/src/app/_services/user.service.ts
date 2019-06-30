@@ -17,8 +17,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers(fitlers: UserFilter) : Observable<PagedResult<any[]>> {
-    
+  getUsers(fitlers: UserFilter): Observable<PagedResult<any[]>> {
+
     let params = new HttpParams();
     const paginatedResult: PagedResult<any[]> = new PagedResult<any[]>();
     params = params.append('pageNumber', fitlers.pageNumber != null ? fitlers.pageNumber .toString() :  null );
@@ -31,7 +31,7 @@ export class UserService {
           // paginatedResult.filters.pageSize = response.body['pageSize'];
           // paginatedResult.filters.pageNumber = response.body['pageNumber'];
           // paginatedResult.filters.totalRecords = response.body['totalRecords'];
-          paginatedResult.entity = response.body;         
+          paginatedResult.entity = response.body;
           return paginatedResult;
       }));
   }
