@@ -15,8 +15,6 @@ export class ListCategoryResolver implements Resolve<Category> {
                 private alertify: AlertifyService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Category> {
-        this.pagination.pageNumber = 1;
-        this.pagination.pageSize = 5;
         return this.categoryService.getAll(this.pagination).pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving your data');

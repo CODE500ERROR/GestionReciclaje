@@ -1,8 +1,8 @@
 export  class FilterBase {
-    pageNumber: number;
+    pageNumber = 1;
     totalRecords: number;
     pageTotal: number;
-    pageSize: number;
+    pageSize = 10;
 }
 
 export class PagedResult<T> {

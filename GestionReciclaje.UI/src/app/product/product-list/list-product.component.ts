@@ -36,7 +36,6 @@ export class ListProductComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
      this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
   }
 
  pageChanged(event: any): void {
@@ -59,7 +58,8 @@ export class ListProductComponent implements OnInit, AfterViewInit {
   }
 
   clearFilters(){
-
+    this.filters.name = '';
+    this.getAll();
   }
 
   goToEdit(productSelected: Product) {

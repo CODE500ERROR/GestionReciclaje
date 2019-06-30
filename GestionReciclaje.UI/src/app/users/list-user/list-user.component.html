@@ -104,7 +104,7 @@
  
 
     <mat-paginator #paginator       
-        [pageSize]="5"
+    [pageSize]="filters.pageSize"
         (page)="pageChanged($event)"
         [length]="filters.totalRecords"
         showFirstLastButtons

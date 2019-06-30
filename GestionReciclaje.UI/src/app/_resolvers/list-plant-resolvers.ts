@@ -16,8 +16,6 @@ export class ListPlantResolver implements Resolve<Plant> {
                 private alertify: AlertifyService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Plant> {
-        this.pagination.pageNumber = 1;
-        this.pagination.pageSize = 5;
         return this.plantService.getAll(this.pagination).pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving your data');

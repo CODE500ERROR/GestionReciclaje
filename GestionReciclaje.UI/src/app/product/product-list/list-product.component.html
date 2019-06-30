@@ -23,7 +23,7 @@
           </mat-expansion-panel-header>
           
           <mat-form-field>
-              <input matInput placeholder="Name" name="name">
+              <input matInput placeholder="Name" name="name" [(ngModel)]="filters.name">
           </mat-form-field>
           <button mat-raised-button color="primary" class="margin-right-10" type="submit">
             <mat-icon aria-label="Example icon-button with a heart icon">search</mat-icon>
@@ -88,7 +88,7 @@
 
     <mat-paginator #paginator
        
-        [pageSize]="5"
+    [pageSize]="filters.pageSize"
         (page)="pageChanged($event)"
         [length]="filters.totalRecords"
         showFirstLastButtons

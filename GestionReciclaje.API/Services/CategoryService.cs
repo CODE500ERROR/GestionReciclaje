@@ -60,8 +60,9 @@ namespace GestionReciclaje.Services
 
             var data = _context.Categories.Include(x=>x.Parent)
                                           .OrderByDescending(x => x.CreationTime)
-                                         .Where(x => !x.IsDeleted)
-                                         .AsQueryable(); //.ProjectTo<CategoryDto>(_mapper.ConfigurationProvider);
+                                         .Where( x => !x.IsDeleted &&
+                                                         (string.IsNullOrEmpty(catParams.Name) || x.Name.Contains(catParams.Name)))
+                                         .AsQueryable(); 
             catParams.TotalRecords= data.Count();
             return await PagedList<Category>.CreateAsync(data, catParams.PageNumber, catParams.PageSize); ;
         }

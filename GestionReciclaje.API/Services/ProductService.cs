@@ -44,7 +44,8 @@ namespace GestionReciclaje.Services
         {
             var data = _context.Products .Include(x=>x.Category)
                                          .OrderByDescending(x => x.CreationTime)
-                                         .Where(x => !x.IsDeleted)
+                                         .Where(x => !x.IsDeleted &&
+                                                         (string.IsNullOrEmpty(prodcutParams.Name) || x.Name.Contains(prodcutParams.Name)))
                                          .AsQueryable(); //.ProjectTo<Product>(_mapper.ConfigurationProvider);
             prodcutParams.TotalRecords= data.Count();
             return await PagedList<Product>.CreateAsync(data, prodcutParams.PageNumber, prodcutParams.PageSize); ;

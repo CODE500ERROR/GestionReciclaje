@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
-import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
-import { Plant } from "src/app/models/Plant";
-import { ActivatedRoute, Router } from "@angular/router";
-import { PlantService } from "src/app/_services/plant.service";
-import { ModalService } from "src/app/_services/modal.service";
-import { AlertifyService } from "src/app/_services/alertify.service";
-import { PlantFilter } from "src/app/models/plantFilter";
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Plant } from 'src/app/models/Plant';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PlantService } from 'src/app/_services/plant.service';
+import { ModalService } from 'src/app/_services/modal.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { PlantFilter } from 'src/app/models/plantFilter';
 
 @Component({
-  selector: "app-list-plant",
-  templateUrl: "./list-plant.component.html",
+  selector: 'app-list-plant',
+  templateUrl: './list-plant.component.html',
   styleUrls: ['./list-plant.component.css']
 })
 export class ListPlantComponent implements OnInit, AfterViewInit {
@@ -51,6 +51,7 @@ export class ListPlantComponent implements OnInit, AfterViewInit {
   }
 
   getAll() {
+     
     this.plantService.getAll(this.filters).subscribe(
       res => {
         this.dataSource.data = res.entity as Plant[];
@@ -65,7 +66,10 @@ export class ListPlantComponent implements OnInit, AfterViewInit {
     this.router.navigate(['Plant/create']);
   }
 
-  clearFilters() {}
+  clearFilters() {
+    this.filters.name = '';
+    this.getAll();
+  }
 
   goToEdit(plantSelected: Plant) {
     this.router.navigate(['/Plant/edit', plantSelected.plantId]);

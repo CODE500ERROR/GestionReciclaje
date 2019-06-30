@@ -15,8 +15,7 @@ export class ListUserResolver implements Resolve<User> {
                 private alertify: AlertifyService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<User> {
-        this.pagination.pageNumber = 1;
-        this.pagination.pageSize = 5;
+
         return this.userService.getUsers(this.pagination).pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving your data');

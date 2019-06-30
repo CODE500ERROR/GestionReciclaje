@@ -34,7 +34,6 @@ export class ListCategoryComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
   }
 
  pageChanged(event: any): void {
@@ -46,8 +45,7 @@ export class ListCategoryComponent implements OnInit, AfterViewInit {
 
   getAll()  {
     this.categoryService.getAll(this.filters).subscribe((res) => {
-      this.dataSource.data = res.entity as Category[];
-      console.log(res);
+      this.dataSource.data = res.entity as Category[];  
     }, error => {
       this.alertify.error(error);
     });
@@ -58,7 +56,8 @@ export class ListCategoryComponent implements OnInit, AfterViewInit {
   }
 
   clearFilters(){
-
+    this.filters.name = '';
+    this.getAll();
   }
 
   goToEdit(categorySelected: Category) {

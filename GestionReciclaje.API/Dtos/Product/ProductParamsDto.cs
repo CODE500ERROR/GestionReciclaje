@@ -16,6 +16,6 @@ namespace GestionReciclaje.Dtos
         public string OrderBy { get; set; }
 
         public int TotalRecords { get; set; }
-       
+       public string Name { get; set; }
     }
 }
