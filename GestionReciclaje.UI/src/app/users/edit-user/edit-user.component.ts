@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, AfterViewInit } from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewInit, AfterContentInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -15,27 +15,28 @@ import { PlantFilter } from 'src/app/models/plantFilter';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent implements OnInit, AfterViewInit {
+export class EditUserComponent implements OnInit, AfterContentInit {
   updateUserForm: FormGroup;
-  user: User ;
+  user: User;
   roles: any = [];
   plants: Plant[];
-  constructor(private route: ActivatedRoute, private plantService: PlantService,private router: Router, private fb: FormBuilder,
-              private userService: UserService, private alertService: AlertifyService,
-              private rolesSerice: RolesService) {}
+  constructor(private route: ActivatedRoute, private plantService: PlantService, private router: Router, private fb: FormBuilder,
+    private userService: UserService, private alertService: AlertifyService,
+    private rolesSerice: RolesService) { }
 
-  
- 
+
+
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.user = (data.user);    
+      this.user = (data.user);
       this.createUpdateForm();
       this.getAllPlant();
-     
+      this.getAllRoles();  
+
     });
   }
-  ngAfterViewInit(){
-    this.getAllRoles(); 
+  ngAfterContentInit () {     
+      
   }
 
 
@@ -66,22 +67,23 @@ export class EditUserComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getRolesSelected(){
+  getRolesSelected() {
     const result = [];
     this.roles.forEach((value, key: string) => {
-        if (value.checked === true){
-          result.push(value.name);
-        }
+      if (value.checked === true) {
+        result.push(value.name);
+      }
     });
     return result;
   }
 
-  getAllRoles(){
-    this.rolesSerice.getAllRoles().subscribe( data =>  {
-     this.roles = data;
-     this.matchRoles();
+  getAllRoles() {
+    this.rolesSerice.getAllRoles().subscribe(data => {
+      this.roles = data;      
     }, error => {
       this.alertService.error(error);
+    },()=>{
+      this.matchRoles();
     })
   }
 
@@ -89,27 +91,27 @@ export class EditUserComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/users']);
   }
 
-  matchRoles(){
+  matchRoles() {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.user.roles.length; i++) {
-        // tslint:disable-next-line:prefer-for-of
-        for (let j = 0; j < this.roles.length;j++){
-           if (this.user.roles[i] === this.roles[j].name){
-              this.roles[j].checked = true;
-              break;
-           }
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < this.roles.length; j++) {
+        if (this.user.roles[i] === this.roles[j].name) {
+          this.roles[j].checked = true;
+          break;
         }
+      }
     }
   }
 
-  getAllPlant(){
-    const filter  = new PlantFilter();
+  getAllPlant() {
+    const filter = new PlantFilter();
     filter.pageSize = 100;
-    this.plantService.getAll(filter).subscribe( data => {
-     this.plants = data.entity;
-   }, error => {
-     this.alertService.error(error);
-   });
- }
+    this.plantService.getAll(filter).subscribe(data => {
+      this.plants = data.entity;
+    }, error => {
+      this.alertService.error(error);
+    });
+  }
 
 }

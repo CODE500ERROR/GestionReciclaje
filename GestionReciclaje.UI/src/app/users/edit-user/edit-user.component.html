@@ -45,7 +45,7 @@
         </mat-error>
       </mat-form-field>
 
-      <div class="radio-roles text-left" >
+      <div class="radio-roles text-left" *ngIf="roles?.length>0">
           <label>Roles: </label>        
           <mat-checkbox formControlName="roles" [(ngModel)]=role.checked value="role.name" *ngFor="let role of roles">
               {{role.name}}

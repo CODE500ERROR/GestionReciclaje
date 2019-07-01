@@ -21,8 +21,7 @@ namespace DatingApp.Controllers
     [ApiController]
 
     public class RolesController : ControllerBase
-    {
-        private readonly IMapper _mapper;
+    {      
         private readonly RoleManager<Role> _roleManager;
         public RolesController(RoleManager<Role> roleManager)
         {

@@ -75,7 +75,9 @@ namespace DatingApp.API.Data
         {
 
             var user = await _context.Users.FindAsync(userDto.Id);
+            
             var userRoles = await _userManager.GetRolesAsync(user);
+
             var selectedRoles = userDto.Roles ?? new string[]{};
             var result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
             if (!result.Succeeded)
