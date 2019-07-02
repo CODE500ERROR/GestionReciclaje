@@ -21,11 +21,26 @@ namespace DatingApp.Controllers
            //_context=context;
         }
 
+         public Guid GetIdUser()
+       {
+           var currentUser = Helper.HttpContext.Current.User.Claims;
+           var result = Guid.Empty;
+           foreach (var i in currentUser)
+           {
+               if (i.Type.Equals("nameid"))
+               {
+                   result = Guid.Parse(i.Value);
+               }
+           }
+
+           return result;
+       }
+
         // GET api/values
       
         public string Get()
         {            
-            return  "Api works";            
+            return GetIdUser().ToString();            
         }
 
      
