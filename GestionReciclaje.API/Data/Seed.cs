@@ -25,8 +25,6 @@ namespace DatingApp.API.Data
         public void SeedUsers()
         {
 
-
-
             if (!_userMananger.Users.Any())
             {
                 var roles = new List<Role>
@@ -69,18 +67,22 @@ namespace DatingApp.API.Data
         {
             if (!_context.Categories.Any())
             {
-                for (int i = 0; i < 6; i++)
+                var categoryInorganicos = new Category()
                 {
-                    var category = new Category()
-                    {
-                        Name = "Categoria0" + i
-                    };
-                    _context.Categories.Add(category);
-                }
+                    Name = "Inorganicos"
+                };
+                _context.Categories.Add(categoryInorganicos);
+                var categoryOrganicos = new Category()
+                {
+                    Name = "Organicos"
+                };
+                _context.Categories.Add(categoryInorganicos);
+                _context.SaveChanges();
             }
-
-            _context.SaveChanges();
         }
+
+
+        
 
 
 
@@ -93,9 +95,9 @@ namespace DatingApp.API.Data
                     Name = "Resistencia"
                 };
                 _context.Municipios.Add(municipio);
+                _context.SaveChanges();
             }
-
-            _context.SaveChanges();
+            
         }
 
 

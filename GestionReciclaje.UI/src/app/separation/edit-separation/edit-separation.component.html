@@ -17,12 +17,15 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="full-width-input">
-    <input matInput placeholder="Unidad" 
-          formControlName="measuresUnit"
-          [value]="updateSeparationForm.get('measuresUnit').value" />
-    <mat-error *ngIf="updateSeparationForm.get('measuresUnit').errors">Unidad es requerido</mat-error>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Seleccione una Unidad</mat-label>
+    <mat-select [value]="updateSeparationForm.get('measuresUnit').value" formControlName="measuresUnit">
+      <mat-option *ngFor="let item of measuresUnits" value="{{item}}">{{item}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="updateSeparationForm.get('measuresUnit').errors">
+      Unidad es requerido
+    </mat-error>
+  </mat-form-field>
 
 <mat-form-field class="full-width-input">
   <input matInput placeholder="Cantidad" 

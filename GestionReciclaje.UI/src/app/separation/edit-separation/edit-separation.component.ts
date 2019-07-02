@@ -18,7 +18,8 @@ export class EditSeparationComponent implements OnInit {
   separation: Separation;
   products: Product[];
   filtersProduct = new ProductFilter();
-
+  measuresUnits:Array<string> = ["KG", "LTS"];
+  
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,

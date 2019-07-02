@@ -17,6 +17,7 @@ export class CreateSeparationComponent implements OnInit {
   separationRegister: Separation;
   createSeparationForm: FormGroup;
   products: Product[];
+  measuresUnits:Array<string> = ["KG", "LTS"];
   filtersProduct = new ProductFilter();
 
 

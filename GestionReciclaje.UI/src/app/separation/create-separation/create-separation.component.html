@@ -1,69 +1,50 @@
-<form
-  [formGroup]="createSeparationForm"
-  (ngSubmit)="save()"
-  class="text-center border border-light p-5 form"
->
+<form [formGroup]="createSeparationForm" (ngSubmit)="save()" class="text-center border border-light p-5 form">
   <p class="h4 mb-4">Crear Separación</p>
 
   <mat-form-field class="full-width-input">
-    <input matInput 
-           placeholder="Descripción"            
-           [value]="createSeparationForm.get('description').value | titlecase"
-           formControlName="description" />
-    
-           <mat-error *ngIf="createSeparationForm.get('description').errors">
-            Descripción es requerido
+    <input matInput placeholder="Descripción" [value]="createSeparationForm.get('description').value | titlecase"
+      formControlName="description" />
+
+    <mat-error *ngIf="createSeparationForm.get('description').errors">
+      Descripción es requerido
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Seleccione un producto</mat-label>
-    <mat-select [value]="createSeparationForm.get('productId').value"
-                formControlName="productId">
+    <mat-select [value]="createSeparationForm.get('productId').value" formControlName="productId">
       <mat-option *ngFor="let item of products" value="{{item.productId}}">{{item.description}}</mat-option>
     </mat-select>
+    <mat-error *ngIf="createSeparationForm.get('productId').errors">
+      Producto es requerido
+    </mat-error>
   </mat-form-field>
-
-  <mat-form-field class="full-width-input">
-    <input matInput 
-           placeholder="Unidad"            
-           [value]="createSeparationForm.get('measuresUnit').value"
-           formControlName="measuresUnit" />
-    
-           <mat-error *ngIf="createSeparationForm.get('measuresUnit').errors">
-            Unidad es requerido
+  
+  <mat-form-field>
+    <mat-label>Seleccione una Unidad</mat-label>
+    <mat-select [value]="createSeparationForm.get('measuresUnit').value" formControlName="measuresUnit">
+      <mat-option *ngFor="let item of measuresUnits" value="{{item}}">{{item}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="createSeparationForm.get('measuresUnit').errors">
+      Unidad es requerido
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width-input">
-    <input matInput 
-           placeholder="Cantidad"            
-           [value]="createSeparationForm.get('quantity').value"
-           formControlName="quantity" />
-    
-           <mat-error *ngIf="createSeparationForm.get('quantity').errors">
-            Cantidad es requerido
+    <input matInput placeholder="Cantidad" [value]="createSeparationForm.get('quantity').value"
+      formControlName="quantity" />
+
+    <mat-error *ngIf="createSeparationForm.get('quantity').errors">
+      Cantidad es requerido
     </mat-error>
   </mat-form-field>
 
 
-
-  <div >
-    <button
-      mat-raised-button
-      color="primary"
-      class="btn-large-50"
-      type="submit"
-    >
+  <div>
+    <button mat-raised-button color="primary" class="btn-large-50" type="submit">
       Guardar
     </button>
-    <button
-      mat-raised-button
-      color=""
-      class="btn-large-50"
-      type="button"
-      (click)="cancel()"
-    >
+    <button mat-raised-button color="" class="btn-large-50" type="button" (click)="cancel()">
       Cancelar
     </button>
   </div>
