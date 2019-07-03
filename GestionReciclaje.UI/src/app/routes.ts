@@ -27,6 +27,7 @@ import { ListSeparationComponent } from './separation/list-separation/list-separ
 import { CreateSeparationComponent } from './separation/create-separation/create-separation.component';
 import { EditSeparationComponent } from './separation/edit-separation/edit-separation.component';
 import { DetailSeparationResolver } from './_resolvers/detail-separation-resolvers';
+import { ChartBartComponent } from './chart-bart/chart-bart.component';
 
 export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -130,7 +131,15 @@ export const appRoutes: Routes = [
         component: EditSeparationComponent,
         resolve: { separation: DetailSeparationResolver },
         data: { roles: ['Admin', 'Super Admin', 'Operator'] }
-      }
+      },
+
+      // ********************* REPORTS ******************************/
+      {
+        path: 'report',
+        component: ChartBartComponent,
+        //resolve: { separations: ListSeparationResolver },
+        data: { roles: ['Admin', 'Super Admin', 'Operator'] }
+      },
     ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }

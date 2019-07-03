@@ -99,6 +99,8 @@ import { ListSeparationComponent } from './separation/list-separation/list-separ
 import { ListSeparationResolver } from './_resolvers/list-separation-resolvers';
 import { DetailSeparationResolver } from './_resolvers/detail-separation-resolvers';
 import { SeparationService } from './_services/separation.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartBartComponent } from './chart-bart/chart-bart.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -133,7 +135,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CreateSeparationComponent,
     EditSeparationComponent,
     ListSeparationComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    ChartBartComponent
   ],
   imports: [
     BrowserModule,
@@ -175,7 +178,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,    
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
