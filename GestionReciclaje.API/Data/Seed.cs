@@ -76,7 +76,7 @@ namespace DatingApp.API.Data
                 {
                     Name = "Organicos"
                 };
-                _context.Categories.Add(categoryInorganicos);
+                _context.Categories.Add(categoryOrganicos);
                 _context.SaveChanges();
             }
         }

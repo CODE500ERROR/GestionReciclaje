@@ -18,10 +18,10 @@ import { CreateCategoryComponent } from "./category/create-category/create-categ
 import { ListCategoryComponent } from "./category/list-category/list-category.component";
 import { ListCategoryResolver } from "./_resolvers/list-category-resolvers";
 import { ListProductComponent } from "./product/product-list/list-product.component";
-import { CreateProductComponent } from "./product/product-create/create-product.component";
-import { EditProductComponent } from "./product/product-edit/edit-product.component";
-import { DetailProductResolver } from "./_resolvers/detail-product-resolvers";
-import { ListProductResolver } from "./_resolvers/list-product-resolvers";
+import { CreateProductComponent } from './product/product-create/create-product.component';
+import { EditProductComponent } from './product/product-edit/edit-product.component';
+import { DetailProductResolver } from './_resolvers/detail-product-resolvers';
+import { ListProductResolver } from './_resolvers/list-product-resolvers';
 import { ListSeparationResolver } from './_resolvers/list-separation-resolvers';
 import { ListSeparationComponent } from './separation/list-separation/list-separation.component';
 import { CreateSeparationComponent } from './separation/create-separation/create-separation.component';
@@ -29,39 +29,39 @@ import { EditSeparationComponent } from './separation/edit-separation/edit-separ
 import { DetailSeparationResolver } from './_resolvers/detail-separation-resolvers';
 
 export const appRoutes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "home", component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   {
-    path: "",
-    runGuardsAndResolvers: "pathParamsChange",
+    path: '',
+    runGuardsAndResolvers: 'pathParamsChange',
     // runGuardsAndResolvers: () => false,
     canActivate: [AuthGuard],
     children: [
       // ******************** USERS *******************
       {
-        path: "users",
+        path: 'users',
         component: ListUserComponent,
         resolve: { users: ListUserResolver },
-        data: { roles: ["Admin", "Super Admin"] }
+        data: { roles: ['Admin', 'Super Admin'] }
       },
       {
-        path: "user/edit/:id",
+        path: 'user/edit/:id',
         component: EditUserComponent,
         resolve: { user: DetailUserResolver },
-        data: { roles: ["Admin", "Super Admin"] }
+        data: { roles: ['Admin', 'Super Admin'] }
       },
       {
-        path: "user/create",
+        path: 'user/create',
         component: CreateUserComponent,
-        data: { roles: ["Admin", "Super Admin"] }
+        data: { roles: ['Admin', 'Super Admin'] }
       },
 
       // ******************** PLANT *******************
       {
-        path: "Plant",
+        path: 'Plant',
         component: ListPlantComponent,
         resolve: { plants: ListPlantResolver },
-        data: { roles: ["Admin", "Super Admin"] }
+        data: { roles: ['Admin', 'Super Admin'] }
       },
       {
         path: 'Plant/create',

@@ -7,16 +7,16 @@ import { AlertifyService } from '../_services/alertify.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router, private alertify : AlertifyService) {}
+  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) {}
 
   canActivate( next: ActivatedRouteSnapshot ): boolean {
     const roles = next.firstChild  != null ? next.firstChild.data['roles'] as Array<string> : null;
     
     if (roles) {
       const match =  this.authService.roleMatch(roles) ;
-      if(match){
+      if (match) {
         return true;
-      } else{
+      } else {
         this.router.navigate(['home']);
         this.alertify.error('No tienes permisos para acceder a esta área');
       }

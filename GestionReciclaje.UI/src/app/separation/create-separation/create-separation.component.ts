@@ -60,18 +60,19 @@ export class CreateSeparationComponent implements OnInit {
     this.separationService.create(this.separationRegister).subscribe(
       () => {
         this.alertService.success('Creado Exitosamente');
+        this.router.navigate(['separation']);
       },
       error => {
         this.alertService.error(error);
       },
       () => {
-        this.router.navigate(['/separtion']);
+        this.router.navigate(['separation']);
       }
     );
   }
 
   cancel() {
-    this.router.navigate(['/separtion']);
+    this.router.navigate(['separation']);
   }
 
   getAllProduct() {
