@@ -26,9 +26,6 @@ import {
 } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
-import { ModalModule } from 'ngx-bootstrap';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 // jwt
 import { JwtModule } from '@auth0/angular-jwt';

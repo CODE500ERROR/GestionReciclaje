@@ -121,7 +121,7 @@ namespace DatingApp
             services.AddScoped<IMunicipioService, MunicipioService>();
             services.AddScoped<ISeparationService, SeparationService>();
             
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
             services.AddScoped<LogUserActivity>();
         }
