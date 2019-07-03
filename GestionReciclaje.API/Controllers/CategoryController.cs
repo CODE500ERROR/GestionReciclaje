@@ -17,7 +17,7 @@ namespace DatingApp.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   [AllowAnonymous]
 
     public class CategoryController : ControllerBase
     {

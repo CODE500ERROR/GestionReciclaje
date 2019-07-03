@@ -20,7 +20,11 @@ export class ChartBartComponent implements OnInit {
     {
       "name": "France",
       "value": 7200000
-    }
+    },
+    {
+      "name": "Argentina",
+      "value": 2000000
+    }    
   ];
   
   multi: any[];
@@ -33,7 +37,7 @@ export class ChartBartComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Categoría';
   showYAxisLabel = true;
   yAxisLabel = 'Population';
 
