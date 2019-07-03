@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Data;
@@ -20,24 +21,26 @@ namespace DatingApp.Controllers
 
     public class SeparationController : ControllerBase
     {
-       
+
         private readonly ISeparationService _separationService;
         private readonly IMapper _mapper;
+        public IDatingRepository _datingRepository;
 
-        public SeparationController(ISeparationService SeparationService, IMapper mapper)
-        {            
+        public SeparationController(ISeparationService SeparationService, IDatingRepository datingRepository, IMapper mapper)
+        {
+            _datingRepository = datingRepository;
             _separationService = SeparationService;
             _mapper = mapper;
         }
 
-        
+
         //[Authorize(Policy="VipOnly")]
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] SeparationParamsDto SeparationParams)
         {
-            var Separations = await  _separationService.GetAll(SeparationParams);
-            var result= _mapper.Map<IEnumerable<SeparationDto>>(Separations);
-            return Ok(result);            
+            var Separations = await _separationService.GetAll(SeparationParams);
+            var result = _mapper.Map<IEnumerable<SeparationDto>>(Separations);
+            return Ok(result);
         }
 
 
@@ -52,13 +55,15 @@ namespace DatingApp.Controllers
         }
 
 
-      
-        [HttpPost()]       
+
+        [HttpPost()]
         public async Task<ActionResult<int>> Create([FromBody] SeparationDto Separation)
         {
             try
             {
-                Separation.PlantId=Guid.Parse("A47428F7-9015-4518-2ED1-08D6FD7CF416");
+                var currentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                var user = await _datingRepository.GetUserDto(currentUser);
+                Separation.PlantId = user.PlantId;
                 await _separationService.Create(Separation);
                 return Ok();
             }
@@ -74,7 +79,9 @@ namespace DatingApp.Controllers
         {
             try
             {
-                Separation.PlantId = Guid.Parse("A47428F7-9015-4518-2ED1-08D6FD7CF416");
+                var currentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                var user = await _datingRepository.GetUserDto(currentUser);
+                Separation.PlantId = user.PlantId;
                 await _separationService.Update(Separation);
                 return Ok();
             }

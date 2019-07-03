@@ -16,6 +16,7 @@ namespace DatingApp.API.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IDatingRepository _repo;
@@ -26,31 +27,14 @@ namespace DatingApp.API.Controllers
             _repo = repo;
         }
 
-        public Guid GetIdUser()
-        {
-            var currentUser = Helper.HttpContext.Current.User.Claims;
-            var result = Guid.Empty;
-            foreach (var i in currentUser)
-            {
-                if (i.Type.Equals("nameid"))
-                {
-                    result = Guid.Parse(i.Value);
-                }
-            }
 
-            return result;
-        }
 
         [HttpGet]
-        [Authorize]
+       
         public async Task<IActionResult> GetAll([FromQuery]UserParams userParams)
         {
-            var currentUserId=GetIdUser();
-
-            // var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            //var userFromRepo = await _repo.GetUser(currentUserId);
-            // userParams.UserId = currentUserId;
-
+            var currentUserId= int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);                    
+            userParams.UserId = currentUserId;
             var users = await _repo.GetUsers(userParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserListDto>>(users);
 

@@ -95,12 +95,13 @@ namespace DatingApp.API.Data
             await _context.SaveChangesAsync();
         }
 
+        
+
         public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
-            var users = _context.Users.Include(x => x.Plant)
-                                .OrderByDescending(u => u.CreationTime).AsQueryable();
-
-            //users = users.Where(u => u.Id != userParams.UserId);
+            var users = _context.Users .Include(x => x.Plant)
+                                       .Where(x=>x.Id!=userParams.UserId)
+                                       .OrderByDescending(u => u.CreationTime).AsQueryable();
             userParams.TotalRecords = users.Count();
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);

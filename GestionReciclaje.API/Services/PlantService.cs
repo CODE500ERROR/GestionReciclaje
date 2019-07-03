@@ -38,8 +38,6 @@ namespace GestionReciclaje.Services
             };
         }
 
-     
-
         public async Task<PagedList<Plant>>GetAll(PlantParamsDto plantParams)
         {
             var data = _context.Plants   .Include(x=>x.Municipio)
