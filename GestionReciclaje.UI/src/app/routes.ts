@@ -135,7 +135,7 @@ export const appRoutes: Routes = [
 
       // ********************* REPORTS ******************************/
       {
-        path: 'report',
+        path: 'reports',
         component: ChartBartComponent,
         //resolve: { separations: ListSeparationResolver },
         data: { roles: ['Admin', 'Super Admin', 'Operator'] }

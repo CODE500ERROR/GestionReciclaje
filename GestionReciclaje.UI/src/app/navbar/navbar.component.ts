@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
   
+  
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {

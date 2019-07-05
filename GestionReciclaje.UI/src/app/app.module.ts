@@ -171,8 +171,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        whitelistedDomains: ['http://c6303115.ngrok.io/'],
-        blacklistedRoutes: ['http://c6303115.ngrok.io/api/auth']
+        whitelistedDomains: ['http://localhost:5000/'],
+        blacklistedRoutes: ['http://localhost:5000/api/auth']
       }
     }),
     BrowserAnimationsModule,

@@ -8,8 +8,12 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="full-width-input">
+
+      
       <input matInput type="password" placeholder="Password" formControlName="password"  [type]="hide ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+
       <mat-error *ngIf="loginForm.get('password').errors">
           Password is required
       </mat-error>

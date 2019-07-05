@@ -63,6 +63,16 @@
         Separaciónes
         </a>
 
+
+        <a
+        mat-list-item
+        (click)="sidenav.close()"
+        [routerLink]="['/reports']"
+        routerLinkActive="list-item-active">    
+          <mat-icon  matListIcon class="app-nav-list-icon">show_chart</mat-icon>
+        Reportes
+        </a>
+
         <mat-divider></mat-divider>
         <h2 matSubheader> Customer </h2>
         
