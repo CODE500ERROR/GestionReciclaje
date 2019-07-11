@@ -29,7 +29,6 @@
             <div class="text-center">
                 <h2 class="app-name">Iniciar Sesión</h2>
             </div>
-            
             <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
@@ -40,15 +39,10 @@
                     </mat-form-field>
                 </div>
             </div>
-
             <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput type="password" placeholder="Contraseña"  formControlName="password"  [type]="hide ? 'password' : 'text'" required>                        
-                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        <mat-error *ngIf="loginForm.get('password').errors">
-                            Password is required
-                        </mat-error>
+                        <input matInput type="password" placeholder="Contraseña">
                     </mat-form-field>
                 </div>
             </div>
@@ -62,7 +56,7 @@
             </div> -->
             <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
-                    <button mat-raised-button color="primary" class="w-100" type="submit">Login</button>
+                    <button mat-raised-button color="primary" class="w-100" (click)="onLogin()">Login</button>
                 </div>
             </div>
 

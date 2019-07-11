@@ -86,3 +86,6 @@ td, th {
 }
 
 
+.container-fluid{
+    height: 100%;
+}
