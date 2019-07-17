@@ -1,0 +1,27 @@
+<!-- <mat-toolbar color="primary" class="crm-navigation-bar" *ngIf="authService.loggedIn()" >
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="toolbar-title" > Gestión de Residuos </span>
+
+    <button mat-icon-button [matMenuTriggerFor]="auth" style="margin-left:1200px">
+      <mat-icon class="custom-material-icons">account_circle</mat-icon>
+      <span class="">{{ authService.decodedToken?.unique_name }} </span>
+    </button>
+
+    <mat-menu #auth="matMenu">
+      <button mat-menu-item >
+        <mat-icon>person_outline</mat-icon>
+        <span>Perfil</span>
+      </button>
+
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salir</span>
+      </button>
+      
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar> -->
