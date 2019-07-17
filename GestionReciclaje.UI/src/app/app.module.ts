@@ -132,9 +132,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ListProductComponent,
     CreateProductComponent,
     EditProductComponent,
+
     CreateSeparationComponent,
     EditSeparationComponent,
     ListSeparationComponent,
+    
     HasRoleDirective,
     ChartBartComponent
   ],
