@@ -36,6 +36,11 @@ import { ListSeparationResolver } from '../shared/resolvers/list-separation-reso
 import { CreateSeparationComponent } from './separation/create-separation/create-separation.component';
 import { EditSeparationComponent } from './separation/edit-separation/edit-separation.component';
 import { DetailSeparationResolver } from '../shared/resolvers/detail-separation-resolvers';
+import { ListUserComponent } from './users/list-user/list-user.component';
+import { ListUserResolver } from '../shared/resolvers/list-user-resolvers';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
+import { DetailUserResolver } from '../shared/resolvers/detail-user-resolvers';
 
 
 export const MaterialRoutes: Routes = [
@@ -179,6 +184,25 @@ export const MaterialRoutes: Routes = [
     component: EditSeparationComponent,
     resolve: { separation: DetailSeparationResolver },
     // data: { roles: ['Admin', 'Super Admin', 'Operator'] }
+  },
+
+  // ******************** USERS *******************
+  {
+    path: 'users',
+    component: ListUserComponent,
+    resolve: { users: ListUserResolver },
+    // data: { roles: ['Admin', 'Super Admin'] }
+  },
+  {
+    path: 'user/edit/:id',
+    component: EditUserComponent,
+    resolve: { user: DetailUserResolver },
+   //  data: { roles: ['Admin', 'Super Admin'] }
+  },
+  {
+    path: 'user/create',
+    component: CreateUserComponent,
+    // data: { roles: ['Admin', 'Super Admin'] }
   },
 
 

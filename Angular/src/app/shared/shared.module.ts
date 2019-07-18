@@ -11,6 +11,8 @@ import { ListSeparationResolver } from './resolvers/list-separation-resolvers';
 import { DetailSeparationResolver } from './resolvers/detail-separation-resolvers';
 import { AlertifyService } from './services/alertify.service';
 import { MatDialogModule } from '@angular/material';
+import { ListUserResolver } from './resolvers/list-user-resolvers';
+import { DetailUserResolver } from './resolvers/detail-user-resolvers';
 
 
 @NgModule({
@@ -38,6 +40,10 @@ import { MatDialogModule } from '@angular/material';
     SeparationService,
     ListSeparationResolver,
     DetailSeparationResolver,
+
+    
+    DetailUserResolver,
+    ListUserResolver,
   
   ],
   entryComponents: [ModalConfirmComponent],

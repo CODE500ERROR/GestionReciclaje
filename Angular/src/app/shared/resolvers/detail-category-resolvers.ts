@@ -6,11 +6,12 @@ import { catchError } from 'rxjs/operators';
 import { Category } from '../../models/category';
 import { CategoryService } from '../services/category.service';
 import { AlertifyService } from '../services/alertify.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class DetailCategoryResolver implements Resolve<Category> {
     constructor(private plantService: CategoryService, private router: Router,
-                private alertify: AlertifyService) {} //, private authService: AuthService) {}
+                private alertify: AlertifyService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Category> {
         return this.plantService.getById(route.params.id).pipe(

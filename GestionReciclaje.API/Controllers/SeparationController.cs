@@ -61,9 +61,9 @@ namespace DatingApp.Controllers
         {
             try
             {
-                var currentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                var user = await _datingRepository.GetUserDto(currentUser);
-                Separation.PlantId = user.PlantId;
+                //var currentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                //var user = await _datingRepository.GetUserDto(currentUser);
+                Separation.PlantId = Guid.Parse("5A613AFA-203D-4A26-63C7-08D6FB3861CB"); //user.PlantId;
                 await _separationService.Create(Separation);
                 return Ok();
             }

@@ -43,6 +43,9 @@ import { EditPlantComponent } from './plant/edit-plant/edit-plant.component';
 import { CreateSeparationComponent } from './separation/create-separation/create-separation.component';
 import { EditSeparationComponent } from './separation/edit-separation/edit-separation.component';
 import { ListSeparationComponent } from './separation/list-separation/list-separation.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { ListUserComponent } from './users/list-user/list-user.component';
 
 
 @NgModule({
@@ -92,6 +95,11 @@ import { ListSeparationComponent } from './separation/list-separation/list-separ
     CreateSeparationComponent,
     EditSeparationComponent,
     ListSeparationComponent,
+
+    CreateUserComponent,
+    EditUserComponent,
+    ListUserComponent,
+
   ]
 })
 export class MaterialComponentsModule {}

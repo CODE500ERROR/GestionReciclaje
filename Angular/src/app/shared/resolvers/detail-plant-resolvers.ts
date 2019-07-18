@@ -6,11 +6,12 @@ import { catchError } from 'rxjs/operators';
 import { Plant } from '../../models/plant';
 import { PlantService } from '../services/plant.service';
 import { AlertifyService } from '../services/alertify.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class DetailPlantResolver implements Resolve<Plant> {
     constructor(private plantService: PlantService, private router: Router,
-                private alertify: AlertifyService) {} // , private authService: AuthService) {}
+                private alertify: AlertifyService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Plant> {
         return this.plantService.getPlantById(route.params.id).pipe(

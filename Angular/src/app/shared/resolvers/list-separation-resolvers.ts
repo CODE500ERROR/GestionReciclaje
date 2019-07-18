@@ -6,12 +6,13 @@ import { Separation } from '../../models/separation';
 import { SeparationFilter } from '../../models/separation-filter';
 import { AlertifyService } from '../services/alertify.service';
 import { SeparationService } from '../services/separation.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class ListSeparationResolver implements Resolve<Separation> {
     pagination = new SeparationFilter();
     constructor(private separationService: SeparationService, private router: Router,
-                private alertify: AlertifyService) {} // , private authService: AuthService) {}
+                private alertify: AlertifyService, private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Separation> {
         this.pagination.pageNumber = 1;

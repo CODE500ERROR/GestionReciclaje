@@ -6,11 +6,12 @@ import { catchError } from 'rxjs/operators';
 import { Separation } from '../../models/separation';
 import { AlertifyService } from '../services/alertify.service';
 import { SeparationService } from '../services/separation.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class DetailSeparationResolver implements Resolve<Separation> {
     constructor(private separationService: SeparationService, private router: Router,
-                private alertify: AlertifyService) {} // , private authService: AuthService) {}
+                private alertify: AlertifyService , private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Separation> {
         return this.separationService.getById(route.params.id).pipe(

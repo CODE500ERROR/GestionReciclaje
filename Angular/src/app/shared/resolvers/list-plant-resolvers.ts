@@ -8,11 +8,12 @@ import { Plant } from '../../models/plant';
 import { PlantFilter } from '../../models/plantFilter';
 import { PlantService } from '../services/plant.service';
 import { AlertifyService } from '../services/alertify.service';
+import { AuthService } from '../services/auth.service';
 @Injectable()
 export class ListPlantResolver implements Resolve<Plant> {
     pagination = new PlantFilter();
     constructor(private plantService: PlantService, private router: Router,
-                private alertify: AlertifyService) {} //  , private authService: AuthService) {}
+                private alertify: AlertifyService  , private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Plant> {
         return this.plantService.getAll(this.pagination).pipe(
