@@ -31,7 +31,10 @@ import { ChartBartComponent } from './chart-bart/chart-bart.component';
 
 export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  
+  
   { path: 'home', component: HomeComponent },
+  
   {
     path: '',
     runGuardsAndResolvers: 'pathParamsChange',

@@ -46,7 +46,7 @@ import { ListSeparationComponent } from './separation/list-separation/list-separ
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { ListUserComponent } from './users/list-user/list-user.component';
-import { MatInputModule } from '@angular/material';
+
 
 
 @NgModule({
@@ -80,7 +80,7 @@ import { MatInputModule } from '@angular/material';
     SnackbarComponent,
     SliderComponent,
     SlideToggleComponent,
-    
+
     ListPlantComponent,
     CreatePlantComponent,
     EditPlantComponent,
@@ -92,7 +92,7 @@ import { MatInputModule } from '@angular/material';
     ListProductComponent,
     CreateProductComponent,
     EditProductComponent,
-    
+
     CreateSeparationComponent,
     EditSeparationComponent,
     ListSeparationComponent,

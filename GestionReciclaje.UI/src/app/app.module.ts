@@ -136,7 +136,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CreateSeparationComponent,
     EditSeparationComponent,
     ListSeparationComponent,
-    
+
     HasRoleDirective,
     ChartBartComponent
   ],
@@ -180,7 +180,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule,    
+    MatListModule,
     NgxChartsModule,
     BrowserAnimationsModule
   ],

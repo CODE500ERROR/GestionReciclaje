@@ -13,38 +13,40 @@ import { AlertifyService } from './services/alertify.service';
 import { MatDialogModule } from '@angular/material';
 import { ListUserResolver } from './resolvers/list-user-resolvers';
 import { DetailUserResolver } from './resolvers/detail-user-resolvers';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
   declarations: [
     ModalConfirmComponent,
-    
+
   ],
   imports: [
     MatDialogModule
-  ], 
+  ],
   exports: [],
 
-  providers: [ MenuItems , 
-   
+  providers: [ MenuItems ,
+
     AlertifyService,
 
     ListPlantResolver,
 
     ListProductResolver,
     DetailProductResolver,
-    
+
     ListCategoryResolver,
     DetailCategoryResolver,
-    
+
     SeparationService,
     ListSeparationResolver,
     DetailSeparationResolver,
 
-    
     DetailUserResolver,
     ListUserResolver,
-  
+
+    AuthGuard
+
   ],
   entryComponents: [ModalConfirmComponent],
 })
